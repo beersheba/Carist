@@ -11,8 +11,12 @@ class MyApp extends StatelessWidget {
       title: 'Carist',
       theme: ThemeData(
         brightness: Brightness.dark,
+        textSelectionHandleColor: Colors.white,
+        textSelectionColor: Colors.grey.shade700,
         textTheme: GoogleFonts.latoTextTheme(
-          ThemeData(brightness: Brightness.dark).textTheme,
+          ThemeData(
+            brightness: Brightness.dark,
+          ).textTheme,
         ),
       ),
       home: EnterPlateScreen(),

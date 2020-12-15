@@ -1,10 +1,13 @@
 import 'dart:ui';
 
+import 'package:carist/model/api.dart';
+import 'package:carist/model/car_data.dart';
+import 'package:carist/widgets/car_data_list.dart';
 import 'package:carist/widgets/car_number_field.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../const.dart';
+import '../common/const.dart';
 
 class EnterPlateScreen extends StatelessWidget {
   final MaskTextInputFormatter carNumberFormatter = new MaskTextInputFormatter(
@@ -12,10 +15,13 @@ class EnterPlateScreen extends StatelessWidget {
     filter: {"#": RegExp(r'[0-9]')},
   );
 
+  final globalKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      key: globalKey,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -51,10 +57,30 @@ class EnterPlateScreen extends StatelessWidget {
                     'Submit',
                     style: TextStyle(fontSize: 18.0),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (carNumberFormatter.isFill()) {
                       var carNumber = carNumberFormatter.getUnmaskedText();
-                      print('Submitting car number: $carNumber');
+                      try {
+                        CarData data = await Api().fetchBasicData(carNumber);
+                        if (data != null) {
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return CarDataList(data);
+                            },
+                          );
+                        }
+                      } catch (e) {
+                        final snackBar = SnackBar(
+                          content: Text(
+                            'No data',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Colors.grey.shade900,
+                        );
+                        globalKey.currentState.showSnackBar(snackBar);
+                      }
                     }
                   },
                 )
