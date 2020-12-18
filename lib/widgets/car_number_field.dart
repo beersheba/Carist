@@ -1,11 +1,7 @@
+import 'package:carist/common/const.dart';
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class CarPlateField extends StatelessWidget {
-  CarPlateField(this.carNumberFormatter);
-
-  final MaskTextInputFormatter carNumberFormatter;
-
+class CarNumberField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -22,7 +18,7 @@ class CarPlateField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.yellow),
         ),
-        hintText: '##-###-##',
+        hintText: carNumberFormatter.getMask(),
       ),
       keyboardType: TextInputType.number,
       onChanged: (value) {

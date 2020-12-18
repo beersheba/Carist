@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CarData {
-  CarData({this.carModel, this.modelNumber, this.version, this.year});
+  CarData({this.carNumber, this.carModel, this.modelNumber, this.version, this.year});
 
+  final int carNumber;
   final String carModel;
   final String modelNumber;
   final String version;
@@ -10,6 +11,7 @@ class CarData {
 
   factory CarData.fromJson(Map<String, dynamic> json) {
     return CarData(
+        carNumber: json['result']['records'][0]['mispar_rechev'],
         carModel: json['result']['records'][0]['kinuy_mishari'],
         modelNumber: json['result']['records'][0]['degem_nm'],
         version: json['result']['records'][0]['ramat_gimur'],

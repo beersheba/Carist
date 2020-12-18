@@ -1,3 +1,4 @@
+import 'package:carist/screens/car_details_screen.dart';
 import 'package:carist/screens/car_number_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Carist',
+      routes: {
+        CarNumberScreen.routeName: (context) => CarNumberScreen(),
+        CarDetailsScreen.routeName: (context) => CarDetailsScreen(),
+      },
+      initialRoute: CarNumberScreen.routeName,
       theme: ThemeData(
         brightness: Brightness.dark,
         textSelectionHandleColor: Colors.white,
@@ -19,7 +25,6 @@ class MyApp extends StatelessWidget {
           ).textTheme,
         ),
       ),
-      home: EnterPlateScreen(),
     );
   }
 }

@@ -2,18 +2,14 @@ import 'dart:ui';
 
 import 'package:carist/model/api.dart';
 import 'package:carist/model/car_data.dart';
-import 'package:carist/widgets/car_data_list.dart';
+import 'package:carist/screens/car_details_screen.dart';
 import 'package:carist/widgets/car_number_field.dart';
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../common/const.dart';
 
-class EnterPlateScreen extends StatelessWidget {
-  final MaskTextInputFormatter carNumberFormatter = new MaskTextInputFormatter(
-    mask: '##-###-##',
-    filter: {"#": RegExp(r'[0-9]')},
-  );
+class CarNumberScreen extends StatelessWidget {
+  static const routeName = 'CarNumberScreen';
 
   final globalKey = GlobalKey<ScaffoldState>();
 
@@ -43,7 +39,7 @@ class EnterPlateScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 20.0),
                     ),
                     SizedBox(height: 30.0),
-                    CarPlateField(carNumberFormatter),
+                    CarNumberField(),
                   ],
                 ),
                 OutlineButton(
@@ -63,12 +59,9 @@ class EnterPlateScreen extends StatelessWidget {
                       try {
                         CarData data = await Api().fetchBasicData(carNumber);
                         if (data != null) {
-                          showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return CarDataList(data);
-                            },
-                          );
+                          Navigator.pushNamed(
+                              context, CarDetailsScreen.routeName,
+                              arguments: data);
                         }
                       } catch (e) {
                         final snackBar = SnackBar(
