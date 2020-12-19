@@ -11,7 +11,8 @@ class CarDetailsScreen extends StatelessWidget {
     final CarData data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text(carNumberFormatter.maskText(data.carNumber.toString())),
+        title:
+            Text(carNumberFormatter.maskText(data.base.carNumber.toString())),
         centerTitle: true,
       ),
       body: Container(

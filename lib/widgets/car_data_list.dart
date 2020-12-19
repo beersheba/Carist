@@ -11,12 +11,12 @@ class CarDataList extends StatelessWidget {
     return ListView.builder(
       physics: BouncingScrollPhysics(),
       shrinkWrap: true,
-      itemCount: data.length,
+      itemCount: data.base.length,
       itemBuilder: (context, index) {
         return Card(
           child: ListTile(
-            leading: Icon(data.icons[index]),
-            title: Text('${data.titles[index]}: ${data.list[index]}'),
+            leading: Icon(data.base.icons[index]),
+            title: Text('${data.base.titles[index]}: ${data.base.list[index]}'),
           ),
         );
       },

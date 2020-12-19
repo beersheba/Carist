@@ -57,8 +57,13 @@ class CarNumberScreen extends StatelessWidget {
                     if (carNumberFormatter.isFill()) {
                       var carNumber = carNumberFormatter.getUnmaskedText();
                       try {
-                        CarData data = await Api().fetchBasicData(carNumber);
-                        if (data != null) {
+                        CarData data = CarData();
+                        data.base = await Api().fetchBaseData(carNumber);
+                        if (data.base != null) {
+                          data.wltp = await Api().fetchWltpData(
+                              data.base.modelNumber,
+                              data.base.modelCode,
+                              data.base.year);
                           Navigator.pushNamed(
                               context, CarDetailsScreen.routeName,
                               arguments: data);
