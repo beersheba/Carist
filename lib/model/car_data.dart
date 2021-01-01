@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 
 class CarData {
   Base base = Base();
@@ -34,13 +34,6 @@ class Base {
   List<String> get list => ['$carModel', '$modelNumber', '$version', '$year'];
 
   List<String> get titles => ['Car model', 'Model Number', 'Version', 'Year'];
-
-  List<IconData> get icons => [
-        Icons.looks_one_outlined,
-        Icons.looks_two_outlined,
-        Icons.looks_3_outlined,
-        Icons.looks_4_outlined
-      ];
 
   int get length => list.length;
 }
