@@ -1,6 +1,6 @@
 import 'package:carist/common/const.dart';
 import 'package:carist/model/car_data.dart';
-import 'package:carist/widgets/car_data_list.dart';
+import 'package:carist/widgets/car_data_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,8 +27,8 @@ class CarDetailsScreen extends StatelessWidget {
               width: 150,
             ),
           ),
-          CarDataList(data),
-          // CarDataTable(data),
+          // CarDataList(data),
+          CarDataTable(data),
         ],
       ),
     );

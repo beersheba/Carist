@@ -19,25 +19,22 @@ class CarDataTable extends StatelessWidget {
             DataColumn(label: Text("")),
           ],
           rows: [
-            DataRow(cells: [
-              DataCell(Text('Car model')),
-              DataCell(Text(data.base.carModel)),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('Model Number')),
-              DataCell(Text(data.base.modelNumber)),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('Version')),
-              DataCell(Text(data.base.version)),
-            ]),
-            DataRow(cells: [
-              DataCell(Text('Year')),
-              DataCell(Text('${data.base.year}')),
-            ]),
+            _textRow('Car model', data.base.carModel),
+            _textRow('Model Number', data.base.modelNumber),
+            _textRow('Version', data.base.version),
+            _textRow('Year', '${data.base.year}'),
           ],
         ),
       ),
     );
   }
+}
+
+DataRow _textRow(String title, String text) {
+  return DataRow(
+    cells: [
+      DataCell(Text(title)),
+      DataCell(Text(text)),
+    ],
+  );
 }
