@@ -14,9 +14,14 @@ class CarDataList extends StatelessWidget {
       itemCount: data.base.length,
       itemBuilder: (context, index) {
         return Card(
-          child: ListTile(
-            leading: Icon(data.base.icons[index]),
-            title: Text('${data.base.titles[index]}: ${data.base.list[index]}'),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(flex: 1, child: Text('${data.base.titles[index]}')),
+                Expanded(flex: 1, child: Text('${data.base.list[index]}'))
+              ],
+            ),
           ),
         );
       },
