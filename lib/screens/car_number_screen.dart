@@ -4,6 +4,7 @@ import 'package:carist/model/api.dart';
 import 'package:carist/model/car_data.dart';
 import 'package:carist/screens/car_details_screen.dart';
 import 'package:carist/widgets/car_number_field.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../common/const.dart';
@@ -15,6 +16,9 @@ class CarNumberScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference brands =
+        FirebaseFirestore.instance.collection('brands');
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       key: globalKey,
@@ -64,6 +68,16 @@ class CarNumberScreen extends StatelessWidget {
                               data.base.modelNumber,
                               data.base.modelCode,
                               data.base.year);
+                          await brands
+                              .where('heb', isEqualTo: data.wltp.brand)
+                              .get()
+                              .then((value) {
+                            if (value.docs.isNotEmpty) {
+                              Map<String, dynamic> documentData =
+                                  value.docs.single.data();
+                              data.translate.brandEng = documentData['eng'];
+                            }
+                          });
                           Navigator.pushNamed(
                               context, CarDetailsScreen.routeName,
                               arguments: data);

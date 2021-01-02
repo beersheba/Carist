@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "991042250438",
+    "project_id": "carist-7fd1e",
+    "storage_bucket": "carist-7fd1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991042250438:android:76aa2288746adf589019c7",
+        "android_client_info": {
+          "package_name": "app.carist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991042250438-tdkf3uk7ke0qr41lvapblvpk53emugoh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADsqM_6VuZ67XzkvfJ5Mf3_PA3d7LM9Iw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991042250438-tdkf3uk7ke0qr41lvapblvpk53emugoh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

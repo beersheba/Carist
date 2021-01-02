@@ -1,8 +1,7 @@
-
-
 class CarData {
   Base base = Base();
   WLTP wltp = WLTP();
+  Translate translate = Translate();
 }
 
 class Base {
@@ -49,4 +48,17 @@ class WLTP {
         brand: json['result']['records'][0]['tozar'],
         country: json['result']['records'][0]['tozeret_eretz_nm']);
   }
+}
+
+class Translate {
+
+  String _brandEng;
+  String _countryEng;
+
+  String get brandEng => _brandEng;
+
+  set brandEng(String brandEng) {
+    _brandEng = brandEng;
+  }
+
 }
