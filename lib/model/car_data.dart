@@ -1,7 +1,7 @@
 class CarData {
   Base base = Base();
-  WLTP wltp = WLTP();
-  Translate translate = Translate();
+  Model model = Model();
+  Extra extra = Extra();
 }
 
 class Base {
@@ -37,28 +37,21 @@ class Base {
   int get length => list.length;
 }
 
-class WLTP {
-  WLTP({this.brand, this.country});
+class Model {
+  Model({this.brand, this.country});
 
   final String brand;
   final String country;
 
-  factory WLTP.fromJson(Map<String, dynamic> json) {
-    return WLTP(
+  factory Model.fromJson(Map<String, dynamic> json) {
+    return Model(
         brand: json['result']['records'][0]['tozar'],
         country: json['result']['records'][0]['tozeret_eretz_nm']);
   }
 }
 
-class Translate {
-
-  String _brandEng;
-  String _countryEng;
-
-  String get brandEng => _brandEng;
-
-  set brandEng(String brandEng) {
-    _brandEng = brandEng;
-  }
-
+class Extra {
+  String brandEng;
+  String countryEng;
+  String logoUrl;
 }

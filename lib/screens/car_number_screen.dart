@@ -64,18 +64,18 @@ class CarNumberScreen extends StatelessWidget {
                         CarData data = CarData();
                         data.base = await Api().fetchBaseData(carNumber);
                         if (data.base != null) {
-                          data.wltp = await Api().fetchWltpData(
+                          data.model = await Api().fetchModelData(
                               data.base.modelNumber,
                               data.base.modelCode,
                               data.base.year);
                           await brands
-                              .where('heb', isEqualTo: data.wltp.brand)
+                              .where('heb', isEqualTo: data.model.brand)
                               .get()
                               .then((value) {
                             if (value.docs.isNotEmpty) {
                               Map<String, dynamic> documentData =
                                   value.docs.single.data();
-                              data.translate.brandEng = documentData['eng'];
+                              data.extra.brandEng = documentData['eng'];
                             }
                           });
                           Navigator.pushNamed(
