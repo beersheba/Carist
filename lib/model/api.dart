@@ -1,3 +1,4 @@
+import 'package:carist/common/firestore_client.dart';
 import 'package:carist/common/http_client.dart';
 import 'package:carist/model/car_data.dart';
 import 'package:carist/model/logos.dart';
@@ -26,5 +27,10 @@ class Api {
         'https://cdn.jsdelivr.net/gh/avto-dev/vehicle-logotypes@2.x/src/vehicle-logotypes.json';
     var json = await HttpClient(url).getString();
     return logosFromJson(json);
+  }
+
+  Future<String> fetchBrandName(String brandName) async {
+    await FirestoreClient()
+        .engBrandName(brandName);
   }
 }
