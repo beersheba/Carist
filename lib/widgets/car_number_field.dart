@@ -18,12 +18,17 @@ class CarNumberField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.yellow),
         ),
-        hintText: carNumberFormatter.getMask(),
+        hintText: zeroMask,
       ),
       keyboardType: TextInputType.number,
       onChanged: (value) {
-        if (carNumberFormatter.isFill()) {
-          FocusManager.instance.primaryFocus.unfocus();
+        int length = carNumberFormatter.getUnmaskedText().length;
+        if (length == 7) {
+          if (carNumberFormatter.getMask() == sevenMask) {
+            carNumberFormatter.updateMask(mask: eightMask);
+          } else {
+            carNumberFormatter.updateMask(mask: sevenMask);
+          }
         }
       },
     );

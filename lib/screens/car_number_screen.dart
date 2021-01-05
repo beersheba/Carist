@@ -43,47 +43,48 @@ class CarNumberScreen extends StatelessWidget {
                   ],
                 ),
                 OutlineButton(
-                  padding: EdgeInsets.symmetric(vertical: 15.0),
-                  borderSide: BorderSide(color: Colors.white),
-                  highlightedBorderColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(fontSize: 18.0),
-                  ),
-                  onPressed: () async {
-                    if (carNumberFormatter.isFill()) {
+                    padding: EdgeInsets.symmetric(vertical: 15.0),
+                    borderSide: BorderSide(color: Colors.white),
+                    highlightedBorderColor: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    child: Text(
+                      'Submit',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                    onPressed: () async {
                       var carNumber = carNumberFormatter.getUnmaskedText();
-                      try {
-                        CarData data = CarData();
-                        data.base = await Api().fetchBaseData(carNumber);
-                        if (data.base != null) {
-                          data.model = await Api().fetchModelData(
-                              data.base.modelNumber,
-                              data.base.modelCode,
-                              data.base.year);
-                          data.extra =
-                              await Api().fetchBrandData(data.model.brand);
-                          Navigator.pushNamed(
-                              context, CarDetailsScreen.routeName,
-                              arguments: data);
+                      if (carNumber.length == 7 || carNumber.length == 8) {
+                        try {
+                          CarData data = CarData();
+                          data.base = await Api().fetchBaseData(carNumber);
+                          if (data.base != null) {
+                            data.model = await Api().fetchModelData(
+                                data.base.modelNumber,
+                                data.base.modelCode,
+                                data.base.year);
+                            data.extra =
+                                await Api().fetchBrandData(data.model.brand);
+                            Navigator.pushNamed(
+                                context, CarDetailsScreen.routeName,
+                                arguments: data);
+                          }
+                        } catch (e) {
+                          final snackBar = SnackBar(
+                            content: Text(
+                              'Number not found',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            backgroundColor: Colors.grey.shade900,
+                          );
+                          globalKey.currentState.showSnackBar(snackBar);
                         }
-                      } catch (e) {
-                        final snackBar = SnackBar(
-                          content: Text(
-                            'No data',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          backgroundColor: Colors.grey.shade900,
-                        );
-                        globalKey.currentState.showSnackBar(snackBar);
+                      } else {
+                        //Display snackbar "Number is wrong"
                       }
-                    }
-                  },
-                )
+                    })
               ],
             ),
           ),

@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.0
-  mask_text_input_formatter: ^1.1.0
+  mask_text_input_formatter: ^1.2.1
   google_fonts: ^1.1.1
   http: ^0.12.2
   firebase_core: ^0.5.3
