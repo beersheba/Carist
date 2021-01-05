@@ -22,15 +22,18 @@ class Api {
     return Model.fromJson(json);
   }
 
-  Future<Map<String, Logos>> fetchLogos() async {
+  Future<Extra> fetchBrandData(String brandName) async =>
+      await FirestoreClient().brandData(brandName);
+
+  Future<Map<String, Logos>> _fetchLogos() async {
     var url =
         'https://cdn.jsdelivr.net/gh/avto-dev/vehicle-logotypes@2.x/src/vehicle-logotypes.json';
     var json = await HttpClient(url).getString();
     return logosFromJson(json);
   }
 
-  Future<String> fetchBrandName(String brandName) async {
-    await FirestoreClient()
-        .engBrandName(brandName);
+  Future<void> populateLogos() async {
+    Map<String, Logos> logos = await _fetchLogos();
+    FirestoreClient().updateLogos(logos);
   }
 }

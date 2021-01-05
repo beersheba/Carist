@@ -22,7 +22,7 @@ class CarDetailsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Image.network(
-              'https://vl.imgix.net//img//seat-logo.png',
+              data.extra.logoUrl,
               height: 150,
               width: 150,
             ),

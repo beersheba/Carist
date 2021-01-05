@@ -64,8 +64,8 @@ class CarNumberScreen extends StatelessWidget {
                               data.base.modelNumber,
                               data.base.modelCode,
                               data.base.year);
-                          data.extra.brandEng =
-                              await Api().fetchBrandName(data.model.brand);
+                          data.extra =
+                              await Api().fetchBrandData(data.model.brand);
                           Navigator.pushNamed(
                               context, CarDetailsScreen.routeName,
                               arguments: data);
