@@ -54,4 +54,5 @@ class Extra {
   String brandEng;
   String countryEng;
   String logoUrl;
+  String formattedNumber;
 }

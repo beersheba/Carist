@@ -8,10 +8,18 @@ import 'package:flutter/material.dart';
 
 import '../common/const.dart';
 
-class CarNumberScreen extends StatelessWidget {
+class CarNumberScreen extends StatefulWidget {
   static const routeName = 'CarNumberScreen';
 
+  @override
+  _CarNumberScreenState createState() => _CarNumberScreenState();
+}
+
+class _CarNumberScreenState extends State<CarNumberScreen> {
   final globalKey = GlobalKey<ScaffoldState>();
+
+  String enteredNumber;
+  String formattedNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -39,52 +47,58 @@ class CarNumberScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 20.0),
                     ),
                     SizedBox(height: 30.0),
-                    CarNumberField(),
+                    CarNumberField(onTextChanged: (value) {
+                      formattedNumber = value;
+                      enteredNumber =
+                          value.toString().replaceAll(RegExp(r'-'), '');
+                    }),
                   ],
                 ),
                 OutlineButton(
-                    padding: EdgeInsets.symmetric(vertical: 15.0),
-                    borderSide: BorderSide(color: Colors.white),
-                    highlightedBorderColor: Colors.grey,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    child: Text(
-                      'Submit',
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                    onPressed: () async {
-                      var carNumber = carNumberFormatter.getUnmaskedText();
-                      if (carNumber.length == 7 || carNumber.length == 8) {
-                        try {
-                          CarData data = CarData();
-                          data.base = await Api().fetchBaseData(carNumber);
-                          if (data.base != null) {
-                            data.model = await Api().fetchModelData(
-                                data.base.modelNumber,
-                                data.base.modelCode,
-                                data.base.year);
-                            data.extra =
-                                await Api().fetchBrandData(data.model.brand);
-                            Navigator.pushNamed(
-                                context, CarDetailsScreen.routeName,
-                                arguments: data);
-                          }
-                        } catch (e) {
-                          final snackBar = SnackBar(
-                            content: Text(
-                              'Number not found',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            backgroundColor: Colors.grey.shade900,
-                          );
-                          globalKey.currentState.showSnackBar(snackBar);
+                  padding: EdgeInsets.symmetric(vertical: 15.0),
+                  borderSide: BorderSide(color: Colors.white),
+                  highlightedBorderColor: Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  onPressed: () async {
+                    var carNumber = enteredNumber;
+                    if (carNumber.length == 7 || carNumber.length == 8) {
+                      try {
+                        CarData data = CarData();
+                        data.base = await Api().fetchBaseData(carNumber);
+                        if (data.base != null) {
+                          data.model = await Api().fetchModelData(
+                              data.base.modelNumber,
+                              data.base.modelCode,
+                              data.base.year);
+                          data.extra =
+                              await Api().fetchBrandData(data.model.brand);
+                          data.extra.formattedNumber = formattedNumber;
+                          Navigator.pushNamed(
+                              context, CarDetailsScreen.routeName,
+                              arguments: data);
                         }
-                      } else {
-                        //Display snackbar "Number is wrong"
+                      } catch (e) {
+                        final snackBar = SnackBar(
+                          content: Text(
+                            'Number not found',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          backgroundColor: Colors.grey.shade900,
+                        );
+                        globalKey.currentState.showSnackBar(snackBar);
                       }
-                    })
+                    } else {
+                      //Display snackbar "Number is wrong"
+                    }
+                  },
+                )
               ],
             ),
           ),
