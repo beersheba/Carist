@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
       },
       initialRoute: CarNumberScreen.routeName,
       theme: ThemeData(
+        textSelectionTheme: TextSelectionThemeData(
+          selectionColor: Colors.grey.shade700,
+          selectionHandleColor: Colors.white,
+        ),
         brightness: Brightness.dark,
-        textSelectionHandleColor: Colors.white,
-        textSelectionColor: Colors.grey.shade700,
         textTheme: GoogleFonts.latoTextTheme(
-          ThemeData(
-            brightness: Brightness.dark,
-          ).textTheme,
+          ThemeData(brightness: Brightness.dark).textTheme,
         ),
       ),
     );

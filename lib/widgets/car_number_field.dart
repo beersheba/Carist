@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CarNumberField extends StatelessWidget {
-  CarNumberField({this.onTextChanged});
+  CarNumberField({this.controller});
 
-  final Function onTextChanged;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class CarNumberField extends StatelessWidget {
         hintText: carNumberHint,
       ),
       keyboardType: TextInputType.number,
-      onChanged: onTextChanged,
+      controller: controller,
     );
   }
 }
