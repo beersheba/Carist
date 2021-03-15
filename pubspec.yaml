@@ -13,6 +13,7 @@ dependencies:
   http: ^0.12.2
   firebase_core: ^0.5.3
   cloud_firestore: ^0.14.4
+  get:
 
 dev_dependencies:
   flutter_test:

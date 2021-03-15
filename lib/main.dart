@@ -1,7 +1,7 @@
-import 'package:carist/screens/car_details_screen.dart';
-import 'package:carist/screens/car_number_screen.dart';
+import 'package:carist/view/number_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() async {
@@ -13,13 +13,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Carist',
-      routes: {
-        CarNumberScreen.routeName: (context) => CarNumberScreen(),
-        CarDetailsScreen.routeName: (context) => CarDetailsScreen(),
-      },
-      initialRoute: CarNumberScreen.routeName,
+      defaultTransition: Transition.rightToLeft,
+      home: NumberView(),
       theme: ThemeData(
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: Colors.grey.shade700,
