@@ -29,12 +29,6 @@ class Base {
         version: json['result']['records'][0]['ramat_gimur'],
         year: json['result']['records'][0]['shnat_yitzur']);
   }
-
-  List<String> get list => ['$carModel', '$modelNumber', '$version', '$year'];
-
-  List<String> get titles => ['Car model', 'Model Number', 'Version', 'Year'];
-
-  int get length => list.length;
 }
 
 class Model {

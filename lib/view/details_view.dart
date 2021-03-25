@@ -24,7 +24,6 @@ class DetailsView extends StatelessWidget {
               width: 150,
             ),
           ),
-          // CarDataList(data),
           CarDataTable(data),
         ],
       ),
