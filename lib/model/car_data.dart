@@ -1,9 +1,3 @@
-class CarData {
-  Base base = Base();
-  Model model = Model();
-  Extra extra = Extra();
-}
-
 class Base {
   Base(
       {this.carNumber,

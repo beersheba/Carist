@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class CarDataTable extends StatelessWidget {
   CarDataTable(this.data);
 
-  final CarData data;
+  final Base data;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,10 @@ class CarDataTable extends StatelessWidget {
             DataColumn(label: Text("")),
           ],
           rows: [
-            _textRow('Car model', data.base.carModel),
-            _textRow('Model Number', data.base.modelNumber),
-            _textRow('Version', data.base.version),
-            _textRow('Year', '${data.base.year}'),
+            _textRow('Car model', data.carModel),
+            _textRow('Model Number', data.modelNumber),
+            _textRow('Version', data.version),
+            _textRow('Year', '${data.year}'),
           ],
         ),
       ),

@@ -8,6 +8,9 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class NumberController extends GetxController {
   TextEditingController textController;
+  var base = Base().obs;
+  var model = Model().obs;
+  var extra = Extra().obs;
 
   @override
   void onInit() {
@@ -22,27 +25,24 @@ class NumberController extends GetxController {
   }
 
   void submitNumber() async {
-    Get.dialog(
-      Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+    Get.dialog(Center(child: CircularProgressIndicator()),
+        barrierDismissible: false);
     var carNumber = textController.text.replaceAll('-', '');
     if (carNumber.length < 7) {
       Get.back();
       Get.snackbar('Error', 'Please enter the valid number');
     } else {
       try {
-        CarData data = CarData();
-        data.base = await fetchBaseData(carNumber);
-        if (data.base != null) {
-          data.model = await fetchModelData(
-              data.base.modelNumber, data.base.modelCode, data.base.year);
-          data.extra = await fetchBrandData(data.model.brand);
+        base.value = await fetchBaseData(carNumber);
+        if (base.value != null) {
+          model.value = await fetchModelData(
+              base.value.modelNumber, base.value.modelCode, base.value.year);
+          extra.value = await fetchBrandData(model.value.brand);
           Get.back();
-          Get.to(() => DetailsView(), arguments: data);
+          Get.to(() => DetailsView());
         }
       } catch (e) {
+        print(e);
         Get.back();
         Get.snackbar('Error', 'Number not found');
       }
