@@ -7,17 +7,13 @@ import 'package:google_fonts/google_fonts.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
+  runApp(
+    GetMaterialApp(
       title: 'Carist',
       defaultTransition: Transition.rightToLeft,
       home: NumberView(),
       theme: ThemeData(
+        accentColor: Colors.grey.shade700,
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: Colors.grey.shade700,
           selectionHandleColor: Colors.white,
@@ -27,6 +23,6 @@ class MyApp extends StatelessWidget {
           ThemeData(brightness: Brightness.dark).textTheme,
         ),
       ),
-    );
-  }
+    ),
+  );
 }

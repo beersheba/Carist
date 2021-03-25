@@ -1,19 +1,18 @@
 import 'dart:ui';
 
 import 'package:carist/common/style.dart';
-import 'package:carist/model/api.dart';
-import 'package:carist/model/car_data.dart';
-import 'package:carist/widgets/car_number_field.dart';
+import 'package:carist/controller/number_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../common/const.dart';
-import 'details_view.dart';
+import 'car_number_field.dart';
 
 class NumberView extends StatelessWidget {
+  final NumberController _numberController = Get.put(NumberController());
+
   @override
   Widget build(BuildContext context) {
-    final textController = TextEditingController();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -37,7 +36,8 @@ class NumberView extends StatelessWidget {
                       style: TextStyle(fontSize: 20.0),
                     ),
                     SizedBox(height: 30.0),
-                    CarNumberField(controller: textController),
+                    CarNumberField(
+                        controller: _numberController.textController),
                   ],
                 ),
                 OutlinedButton(
@@ -50,26 +50,7 @@ class NumberView extends StatelessWidget {
                     ),
                   ),
                   onPressed: () async {
-                    var carNumber = textController.text.replaceAll('-', '');
-                    if (carNumber.length < 7) {
-                      Get.snackbar('Error', 'Number too short');
-                    } else {
-                      try {
-                        CarData data = CarData();
-                        data.base = await fetchBaseData(carNumber);
-                        if (data.base != null) {
-                          data.model = await fetchModelData(
-                              data.base.modelNumber,
-                              data.base.modelCode,
-                              data.base.year);
-                          data.extra = await fetchBrandData(data.model.brand);
-                          data.extra.formattedNumber = textController.text;
-                          Get.to(DetailsView(), arguments: data);
-                        }
-                      } catch (e) {
-                        Get.snackbar('Error', 'Number not found');
-                      }
-                    }
+                    _numberController.submitNumber();
                   },
                 )
               ],
