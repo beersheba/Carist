@@ -14,19 +14,19 @@ class DetailsView extends StatelessWidget {
         title: Text(_numberController.textController.text),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Obx(() => Image.network(
-                  _numberController.extra.value.logoUrl,
-                  height: 150,
-                  width: 150,
-                )),
-          ),
-          Obx(() => DetailsTable(_numberController.base.value)),
-        ],
+      body: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Image.network(
+                _numberController.extra.value.logoUrl,
+                height: 150,
+              ),
+            ),
+            DetailsTable(),
+          ],
+        ),
       ),
     );
   }
