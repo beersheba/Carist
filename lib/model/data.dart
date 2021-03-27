@@ -1,24 +1,24 @@
 class Base {
   Base(
-      {this.carNumber,
-      this.carModel,
-      this.modelNumber,
+      {this.number,
+      this.model,
+      this.modelName,
       this.modelCode,
       this.version,
       this.year});
 
-  final int carNumber;
-  final String carModel;
-  final String modelNumber;
+  final int number;
+  final String model;
+  final String modelName;
   final int modelCode;
   final String version;
   final int year;
 
   factory Base.fromJson(Map<String, dynamic> json) {
     return Base(
-        carNumber: json['result']['records'][0]['mispar_rechev'],
-        carModel: json['result']['records'][0]['kinuy_mishari'],
-        modelNumber: json['result']['records'][0]['degem_nm'],
+        number: json['result']['records'][0]['mispar_rechev'],
+        model: json['result']['records'][0]['kinuy_mishari'],
+        modelName: json['result']['records'][0]['degem_nm'],
         modelCode: json['result']['records'][0]['degem_cd'],
         version: json['result']['records'][0]['ramat_gimur'],
         year: json['result']['records'][0]['shnat_yitzur']);

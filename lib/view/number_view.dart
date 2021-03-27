@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../common/const.dart';
-import 'car_number_field.dart';
+import 'number_field.dart';
 
 class NumberView extends StatelessWidget {
   final NumberController _numberController = Get.put(NumberController());
@@ -31,19 +31,18 @@ class NumberView extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'Enter the license plate number',
+                      'number_title'.tr,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20.0),
                     ),
                     SizedBox(height: 30.0),
-                    CarNumberField(
-                        controller: _numberController.textController),
+                    NumberField(controller: _numberController.textController),
                   ],
                 ),
                 OutlinedButton(
                   style: outlinedButtonStyle,
                   child: Text(
-                    'Submit',
+                    'number_submit'.tr,
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,

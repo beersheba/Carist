@@ -1,6 +1,6 @@
 import 'package:carist/common/firestore_client.dart';
 import 'package:carist/common/http_client.dart';
-import 'package:carist/model/car_data.dart';
+import 'package:carist/model/data.dart';
 import 'package:carist/model/logos.dart';
 
 const String baseUrl = 'https://data.gov.il/api/action/datastore_search';

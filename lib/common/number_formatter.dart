@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-class CarNumberTextFormatter extends TextInputFormatter {
+class NumberFormatter extends TextInputFormatter {
   final String separator = '-';
 
   @override

@@ -1,3 +1,4 @@
+import 'package:carist/common/strings.dart';
 import 'package:carist/view/number_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,10 @@ void main() async {
     GetMaterialApp(
       title: 'Carist',
       defaultTransition: Transition.rightToLeft,
+      translations: Strings(),
+      locale: Get.deviceLocale,
+      fallbackLocale: Locale('en', 'US'),
+      // locale: Locale('he', 'IL'),
       home: NumberView(),
       theme: ThemeData(
         accentColor: Colors.grey.shade700,

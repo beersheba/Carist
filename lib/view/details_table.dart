@@ -1,8 +1,9 @@
-import 'package:carist/model/car_data.dart';
+import 'package:carist/model/data.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CarDataTable extends StatelessWidget {
-  CarDataTable(this.data);
+class DetailsTable extends StatelessWidget {
+  DetailsTable(this.data);
 
   final Base data;
 
@@ -19,10 +20,10 @@ class CarDataTable extends StatelessWidget {
             DataColumn(label: Text("")),
           ],
           rows: [
-            _textRow('Car model', data.carModel),
-            _textRow('Model Number', data.modelNumber),
-            _textRow('Version', data.version),
-            _textRow('Year', '${data.year}'),
+            _textRow('details_model'.tr, data.model),
+            _textRow('details_model_name'.tr, data.modelName),
+            _textRow('details_version'.tr, data.version),
+            _textRow('details_year'.tr, '${data.year}'),
           ],
         ),
       ),

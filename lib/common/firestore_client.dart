@@ -1,6 +1,6 @@
 import 'dart:collection';
 
-import 'package:carist/model/car_data.dart';
+import 'package:carist/model/data.dart';
 import 'package:carist/model/logos.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

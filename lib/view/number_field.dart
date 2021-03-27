@@ -1,10 +1,10 @@
-import 'package:carist/common/car_number_formatter.dart';
-import 'package:carist/common/const.dart';
+import 'package:carist/common/number_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
-class CarNumberField extends StatelessWidget {
-  CarNumberField({this.controller});
+class NumberField extends StatelessWidget {
+  NumberField({this.controller});
 
   final TextEditingController controller;
 
@@ -15,7 +15,7 @@ class CarNumberField extends StatelessWidget {
       inputFormatters: [
         FilteringTextInputFormatter.digitsOnly,
         LengthLimitingTextInputFormatter(8),
-        CarNumberTextFormatter(),
+        NumberFormatter(),
       ],
       textAlign: TextAlign.center,
       style: TextStyle(fontSize: 25.0),
@@ -28,7 +28,7 @@ class CarNumberField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.yellow),
         ),
-        hintText: carNumberHint,
+        hintText: 'number_hint'.tr,
       ),
       keyboardType: TextInputType.number,
       controller: controller,

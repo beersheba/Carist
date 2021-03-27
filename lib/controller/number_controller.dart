@@ -1,5 +1,5 @@
-import 'package:carist/model/api.dart';
-import 'package:carist/model/car_data.dart';
+import 'package:carist/model/data.dart';
+import 'package:carist/model/repository.dart';
 import 'package:carist/view/details_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +30,13 @@ class NumberController extends GetxController {
     var carNumber = textController.text.replaceAll('-', '');
     if (carNumber.length < 7) {
       Get.back();
-      Get.snackbar('Error', 'Please enter the valid number');
+      Get.snackbar('error'.tr, 'error_number_invalid'.tr);
     } else {
       try {
         base.value = await fetchBaseData(carNumber);
         if (base.value != null) {
           model.value = await fetchModelData(
-              base.value.modelNumber, base.value.modelCode, base.value.year);
+              base.value.modelName, base.value.modelCode, base.value.year);
           extra.value = await fetchBrandData(model.value.brand);
           Get.back();
           Get.to(() => DetailsView());
@@ -44,7 +44,7 @@ class NumberController extends GetxController {
       } catch (e) {
         print(e);
         Get.back();
-        Get.snackbar('Error', 'Number not found');
+        Get.snackbar('error'.tr, 'error_number_not_found'.tr);
       }
     }
   }

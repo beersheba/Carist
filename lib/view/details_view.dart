@@ -1,5 +1,5 @@
 import 'package:carist/controller/number_controller.dart';
-import 'package:carist/view/car_data_table.dart';
+import 'package:carist/view/details_table.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,7 +25,7 @@ class DetailsView extends StatelessWidget {
                   width: 150,
                 )),
           ),
-          Obx(() => CarDataTable(_numberController.base.value)),
+          Obx(() => DetailsTable(_numberController.base.value)),
         ],
       ),
     );
