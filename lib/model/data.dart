@@ -49,7 +49,10 @@ class Base {
 }
 
 class Model {
-  Model({this.brand, this.country});
+  Model({
+    this.brand,
+    this.country,
+  });
 
   final String brand;
   final String country;
@@ -58,6 +61,26 @@ class Model {
     return Model(
       brand: json['result']['records'][0]['tozar'],
       country: json['result']['records'][0]['tozeret_eretz_nm'],
+    );
+  }
+}
+
+class Details {
+  Details({
+    this.engineSize,
+    this.weight,
+    this.horsePower,
+  });
+
+  final int engineSize;
+  final int weight;
+  final int horsePower;
+
+  factory Details.fromJson(Map<String, dynamic> json) {
+    return Details(
+      engineSize: json['result']['records'][0]['nefah_manoa'],
+      weight: json['result']['records'][0]['mishkal_kolel'],
+      horsePower: json['result']['records'][0]['koah_sus'],
     );
   }
 }

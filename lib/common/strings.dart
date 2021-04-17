@@ -24,6 +24,7 @@ class Strings extends Translations {
           'details_fuel': 'Fuel Type',
           'details_test': 'Test Date',
           'details_test_valid': 'Valid Till',
+          'details_horse_power': 'Horse Power',
         },
         'he_IL': {
           'error': 'שגיאה',
@@ -46,6 +47,7 @@ class Strings extends Translations {
           'details_fuel': 'סוג דלק',
           'details_test': 'תאריך מבחן רכב (טסט)',
           'details_test_valid': 'תוקף רישיון רכב',
+          'details_horse_power': 'כוח סוס',
         }
       };
 }
