@@ -25,6 +25,8 @@ class Strings extends Translations {
           'details_test': 'Test Date',
           'details_test_valid': 'Valid Till',
           'details_horse_power': 'Horse Power',
+          'details_engine_size': 'Engine Size',
+          'details_weight': 'Total Weight',
         },
         'he_IL': {
           'error': 'שגיאה',
@@ -48,6 +50,8 @@ class Strings extends Translations {
           'details_test': 'תאריך מבחן רכב (טסט)',
           'details_test_valid': 'תוקף רישיון רכב',
           'details_horse_power': 'כוח סוס',
+          'details_engine_size': 'נפח מנוע',
+          'details_weight': 'משקל כולל',
         }
       };
 }
