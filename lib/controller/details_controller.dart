@@ -6,7 +6,6 @@ import 'number_controller.dart';
 
 class DetailsController extends GetxController {
   var details = Details().obs;
-  var model = Model().obs;
   var extra = Extra().obs;
 
   final NumberController _numberController = Get.find();
@@ -19,10 +18,8 @@ class DetailsController extends GetxController {
 
   void _fetchDetails() async {
     Base base = _numberController.base.value;
-    model.value =
-        await fetchModelData(base.modelName, base.modelCode, base.year);
-    extra.value = await fetchBrandData(model.value.brand);
     details.value =
         await fetchDetailsData(base.modelName, base.modelCode, base.year);
+    extra.value = await fetchBrandData(details.value.brand);
   }
 }

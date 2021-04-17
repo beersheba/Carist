@@ -12,14 +12,6 @@ Future<Base> fetchBaseData(String carNumber) async {
   return Base.fromJson(json);
 }
 
-Future<Model> fetchModelData(String modelName, int modelCode, int year) async {
-  String resourceId = '5e87a7a1-2f6f-41c1-8aec-7216d52a6cf6';
-  String code = modelCode.toString().padLeft(4, '0');
-  String url = '$baseUrl?resource_id=$resourceId&q=$modelName+$code+$year';
-  var json = await HttpClient(url).getData();
-  return Model.fromJson(json);
-}
-
 Future<Details> fetchDetailsData(
     String modelName, int modelCode, int year) async {
   String resourceId = '142afde2-6228-49f9-8a29-9b6c3a0cbe40';

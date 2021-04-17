@@ -48,36 +48,25 @@ class Base {
   }
 }
 
-class Model {
-  Model({
-    this.brand,
-    this.country,
-  });
-
-  final String brand;
-  final String country;
-
-  factory Model.fromJson(Map<String, dynamic> json) {
-    return Model(
-      brand: json['result']['records'][0]['tozar'],
-      country: json['result']['records'][0]['tozeret_eretz_nm'],
-    );
-  }
-}
-
 class Details {
   Details({
+    this.brand,
+    this.country,
     this.engineSize,
     this.weight,
     this.horsePower,
   });
 
+  final String brand;
+  final String country;
   final int engineSize;
   final int weight;
   final int horsePower;
 
   factory Details.fromJson(Map<String, dynamic> json) {
     return Details(
+      brand: json['result']['records'][0]['tozar'],
+      country: json['result']['records'][0]['tozeret_eretz_nm'],
       engineSize: json['result']['records'][0]['nefah_manoa'],
       weight: json['result']['records'][0]['mishkal_kolel'],
       horsePower: json['result']['records'][0]['koah_sus'],
