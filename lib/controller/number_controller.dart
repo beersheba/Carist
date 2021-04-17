@@ -9,8 +9,6 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 class NumberController extends GetxController {
   TextEditingController textController;
   var base = Base().obs;
-  var model = Model().obs;
-  var extra = Extra().obs;
 
   @override
   void onInit() {
@@ -35,9 +33,6 @@ class NumberController extends GetxController {
       try {
         base.value = await fetchBaseData(carNumber);
         if (base.value != null) {
-          model.value = await fetchModelData(
-              base.value.modelName, base.value.modelCode, base.value.year);
-          extra.value = await fetchBrandData(model.value.brand);
           Get.back();
           Get.to(() => DetailsView());
         }

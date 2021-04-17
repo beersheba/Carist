@@ -6,13 +6,14 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class DetailsTable extends StatelessWidget {
-  final DetailsController _detailsController = Get.put(DetailsController());
   final NumberController _numberController = Get.find();
+  final DetailsController _detailsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
     Base base = _numberController.base.value;
     Rx<Details> details = _detailsController.details;
+
     return Expanded(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -45,12 +46,13 @@ class DetailsTable extends StatelessWidget {
   }
 
   String _vehicleName() {
-    String brand = _numberController.extra.value.brandEng.toUpperCase();
+    String brand = _detailsController.extra.value.brandEng;
+    if (brand == null) return null;
     String model = _numberController.base.value.model;
     if (model.isCaseInsensitiveContains(brand)) {
       return model;
     }
-    return ('$brand $model');
+    return ('${brand.toUpperCase()} $model');
   }
 
   String _formatDate(String date) {
