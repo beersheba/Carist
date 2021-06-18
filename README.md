@@ -2,11 +2,11 @@
 
 App to fetch vehicle data (year, engine, vin, test date etc.) by registration plate number.
 
-The app currently fetches data for > 3,5M passenger cars registered in Israel.
+The app currently fetches data for > 3.5M passenger cars registered in Israel.
 
 ## Built using
 - Flutter
-- Firestore database
-- GetX for state management
+- Cloud Firestore database
+- GetX for state management & routing
 - English and Hebrew localization
-- Israel Government Database
+- <a href=https://data.gov.il/>Israel Government Databases</a> API
