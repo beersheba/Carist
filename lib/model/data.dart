@@ -12,7 +12,7 @@ class Base {
     this.ownership,
     this.fuel,
     this.testDate,
-    this.testValidity,
+    this.licenseValidity,
   });
 
   final int number;
@@ -27,7 +27,7 @@ class Base {
   final String ownership;
   final String fuel;
   final String testDate;
-  final String testValidity;
+  final String licenseValidity;
 
   factory Base.fromJson(Map<String, dynamic> json) {
     return Base(
@@ -43,7 +43,7 @@ class Base {
       ownership: json['result']['records'][0]['baalut'],
       fuel: json['result']['records'][0]['sug_delek_nm'],
       testDate: json['result']['records'][0]['mivchan_acharon_dt'],
-      testValidity: json['result']['records'][0]['tokef_dt'],
+      licenseValidity: json['result']['records'][0]['tokef_dt'],
     );
   }
 }

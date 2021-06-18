@@ -29,18 +29,43 @@ class DetailsTable extends StatelessWidget {
               _textRow('details_model'.tr, _vehicleName()),
               _textRow('details_version'.tr, base.version),
               _textRow('details_year'.tr, base.year),
-              _textRow('details_engine_size'.tr, details.value.engineSize),
+              _textRow(
+                'details_engine_size'.tr,
+                details.value.engineSize,
+                units: 'details_cc'.tr,
+              ),
               _textRow('details_fuel'.tr, base.fuel),
               _textRow('details_horse_power'.tr, details.value.horsePower),
               _textRow('details_ownership'.tr, base.ownership),
-              _textRow('details_weight'.tr, details.value.weight),
+              _textRow(
+                'details_weight'.tr,
+                details.value.weight,
+                units: 'details_kilo'.tr,
+              ),
               _textRow('details_vin'.tr, base.vin),
-              _textRow('details_test'.tr, _formatDate(base.testDate)),
-              _textRow('details_test_valid'.tr, _formatDate(base.testValidity)),
+              _textRow('details_last_test'.tr, _formatDate(base.testDate)),
+              _textRow(
+                'details_license_valid'.tr,
+                _formatDate(base.licenseValidity),
+                textColor: _dateColor(base.licenseValidity),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  DataRow _textRow(String title, var value,
+      {Color textColor = Colors.white, String units = ''}) {
+    return DataRow(
+      cells: [
+        DataCell(Text(title)),
+        DataCell(value == null
+            ? Text('-')
+            : Text("${value.toString()} $units",
+                style: TextStyle(color: textColor))),
+      ],
     );
   }
 
@@ -59,9 +84,20 @@ class DetailsTable extends StatelessWidget {
     return DateFormat("dd/MM/yyyy").format(dateTime);
   }
 
+  Color _dateColor(String date) {
+    return _daysLeft(date) < _daysInCurrentMonth(date)
+        ? Colors.red
+        : Colors.white;
+  }
+
   int _daysLeft(String date) {
     DateTime dateTime = DateTime.parse(date);
     return dateTime.difference(DateTime.now()).inDays;
+  }
+
+  int _daysInCurrentMonth(String date) {
+    DateTime dateTime = DateTime.now();
+    return DateTime(dateTime.year, dateTime.month + 1, 0).day;
   }
 }
 
@@ -71,13 +107,4 @@ String _vehicleType(String type) {
     vehicleType = 'details_type_commercial'.tr;
   }
   return vehicleType;
-}
-
-DataRow _textRow(String title, var value) {
-  return DataRow(
-    cells: [
-      DataCell(Text(title)),
-      DataCell(value == null ? Text('-') : Text(value.toString())),
-    ],
-  );
 }
