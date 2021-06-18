@@ -1,5 +1,4 @@
-import 'package:carist/model/data.dart';
-import 'package:carist/model/repository.dart';
+import 'package:carist/controller/data_controller.dart';
 import 'package:carist/view/details_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +7,12 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class NumberController extends GetxController {
   TextEditingController textController;
-  var base = Base().obs;
+  DataController dataController;
 
   @override
   void onInit() {
     textController = TextEditingController();
+    dataController = Get.put(DataController());
     super.onInit();
   }
 
@@ -31,8 +31,8 @@ class NumberController extends GetxController {
       Get.snackbar('error'.tr, 'error_number_invalid'.tr);
     } else {
       try {
-        base.value = await fetchBaseData(carNumber);
-        if (base.value != null) {
+        await dataController.fetchData(carNumber);
+        if (dataController.base.value != null) {
           Get.back();
           Get.to(() => DetailsView());
         }

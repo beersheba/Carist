@@ -1,18 +1,16 @@
-import 'package:carist/controller/details_controller.dart';
-import 'package:carist/controller/number_controller.dart';
+import 'package:carist/controller/data_controller.dart';
 import 'package:carist/model/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class DetailsTable extends StatelessWidget {
-  final NumberController _numberController = Get.find();
-  final DetailsController _detailsController = Get.find();
+  final DataController _dataController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    Base base = _numberController.base.value;
-    Rx<Details> details = _detailsController.details;
+    Base base = _dataController.base.value;
+    Rx<Details> details = _dataController.details;
 
     return Expanded(
       child: SingleChildScrollView(
@@ -70,9 +68,9 @@ class DetailsTable extends StatelessWidget {
   }
 
   String _vehicleName() {
-    String brand = _detailsController.extra.value.brandEng;
+    String brand = _dataController.extra.value.brandEng;
     if (brand == null) return null;
-    String model = _numberController.base.value.model;
+    String model = _dataController.base.value.model;
     if (model.isCaseInsensitiveContains(brand)) {
       return model;
     }

@@ -7,6 +7,13 @@ class NumberFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     var text = newValue.text;
+    var string = formatNumber(text);
+    return newValue.copyWith(
+        text: string,
+        selection: new TextSelection.collapsed(offset: string.length));
+  }
+
+  String formatNumber(String text) {
     var firstDelimiterIndex = 2;
     var secondDelimiterIndex = 5;
     if (text.length > 7) {
@@ -22,9 +29,6 @@ class NumberFormatter extends TextInputFormatter {
         buffer.write(separator);
       }
     }
-    var string = buffer.toString();
-    return newValue.copyWith(
-        text: buffer.toString(),
-        selection: new TextSelection.collapsed(offset: string.length));
+    return buffer.toString();
   }
 }
