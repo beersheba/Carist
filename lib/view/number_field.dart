@@ -4,9 +4,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class NumberField extends StatelessWidget {
-  NumberField({this.controller});
+  NumberField({this.controller, this.onConfirm});
 
   final TextEditingController controller;
+  final Function onConfirm;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,7 @@ class NumberField extends StatelessWidget {
       ),
       keyboardType: TextInputType.number,
       controller: controller,
+      onSubmitted: onConfirm,
     );
   }
 }

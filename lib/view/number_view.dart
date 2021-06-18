@@ -36,7 +36,10 @@ class NumberView extends StatelessWidget {
                       style: TextStyle(fontSize: 20.0),
                     ),
                     SizedBox(height: 30.0),
-                    NumberField(controller: _numberController.textController),
+                    NumberField(
+                      controller: _numberController.textController,
+                      onConfirm: (_) async => _numberController.submitNumber(),
+                    ),
                   ],
                 ),
                 OutlinedButton(
@@ -48,9 +51,7 @@ class NumberView extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () async {
-                    _numberController.submitNumber();
-                  },
+                  onPressed: () async => _numberController.submitNumber(),
                 )
               ],
             ),
