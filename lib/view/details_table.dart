@@ -1,6 +1,7 @@
 import 'package:carist/controller/data_controller.dart';
 import 'package:carist/model/data.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +18,7 @@ class DetailsTable extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Obx(
           () => DataTable(
+            showCheckboxColumn: false,
             headingRowHeight: 0,
             dividerThickness: 2.0,
             columns: [
@@ -56,14 +58,20 @@ class DetailsTable extends StatelessWidget {
 
   DataRow _textRow(String title, var value,
       {Color textColor = Colors.white, String units = ''}) {
+    var data = value == null ? '-' : value.toString();
+    if (!units.isBlank) {
+      data = "$data $units";
+    }
     return DataRow(
       cells: [
         DataCell(Text(title)),
-        DataCell(value == null
-            ? Text('-')
-            : Text("${value.toString()} $units",
-                style: TextStyle(color: textColor))),
+        DataCell(Text(data, style: TextStyle(color: textColor))),
       ],
+      onSelectChanged: (_) {
+        Clipboard.setData(ClipboardData(text: data)).then((value) {
+          Get.snackbar('copied'.tr, data);
+        });
+      },
     );
   }
 

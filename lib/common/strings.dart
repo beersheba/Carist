@@ -29,6 +29,7 @@ class Strings extends Translations {
           'details_weight': 'Total Weight',
           'details_cc': 'cc',
           'details_kilo': 'kg',
+          'copied': 'Copied to clipboard',
         },
         'he_IL': {
           'error': 'שגיאה',
@@ -56,6 +57,7 @@ class Strings extends Translations {
           'details_weight': 'משקל כולל',
           'details_cc': 'סמ"ק',
           'details_kilo': 'ק"ג',
+          'copied': 'הועתק ללוח',
         }
       };
 }
