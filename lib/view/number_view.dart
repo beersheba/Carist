@@ -16,7 +16,9 @@ class NumberView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Center(
+        child: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 100.0),
             child: Column(
