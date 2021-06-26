@@ -13,6 +13,7 @@ class NumberView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -20,7 +21,7 @@ class NumberView extends StatelessWidget {
           behavior: HitTestBehavior.translucent,
           onTap: () => FocusScope.of(context).unfocus(),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 100.0),
+            padding: EdgeInsets.symmetric(horizontal: size.width / 4),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -28,7 +29,7 @@ class NumberView extends StatelessWidget {
                 Image(
                   image: NetworkImage(logo),
                   color: Colors.white,
-                  height: 50.0,
+                  height: size.height / 10,
                 ),
                 Column(
                   children: [
@@ -37,7 +38,7 @@ class NumberView extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20.0),
                     ),
-                    SizedBox(height: 30.0),
+                    SizedBox(height: size.height / 15),
                     NumberField(
                       controller: _numberController.textController,
                       onConfirm: (_) async => _numberController.submitNumber(),
