@@ -36,7 +36,7 @@ class NumberView extends StatelessWidget {
                     Text(
                       'number_title'.tr,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20.0),
+                      style: TextStyle(fontSize: 23.0),
                     ),
                     SizedBox(height: size.height / 15),
                     NumberField(
@@ -50,7 +50,7 @@ class NumberView extends StatelessWidget {
                   child: Text(
                     'number_submit'.tr,
                     style: TextStyle(
-                      fontSize: 18.0,
+                      fontSize: 20.0,
                       color: Colors.white,
                     ),
                   ),
