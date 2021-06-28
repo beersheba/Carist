@@ -5,7 +5,6 @@ import 'package:carist/controller/number_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../common/const.dart';
 import 'number_field.dart';
 
 class NumberView extends StatelessWidget {
@@ -26,10 +25,9 @@ class NumberView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image(
-                  image: NetworkImage(logo),
+                Image.asset(
+                  'assets/images/mot-logo.png',
                   color: Colors.white,
-                  height: size.height / 10,
                 ),
                 Column(
                   children: [
@@ -38,7 +36,7 @@ class NumberView extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 23.0),
                     ),
-                    SizedBox(height: size.height / 15),
+                    SizedBox(height: size.height / 30),
                     NumberField(
                       controller: _numberController.textController,
                       onConfirm: (_) async => _numberController.submitNumber(),
