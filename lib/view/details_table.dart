@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
 
 class DetailsTable extends StatelessWidget {
-  final DetailsController detailsController = Get.find();
+  final DetailsController _detailsController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class DetailsTable extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Screenshot(
-          controller: detailsController.screenshotController,
+          controller: _detailsController.screenshotController,
           child: DataTable(
             showCheckboxColumn: false,
             headingRowHeight: 0,
@@ -30,12 +30,12 @@ class DetailsTable extends StatelessWidget {
   }
 
   List<DataRow> getRows() {
-    var rowsList = <DataRow>[];
-    var details = detailsController.getDetails();
-    details.forEach((element) {
-      rowsList.add(_dataRow(element));
+    var rows = <DataRow>[];
+    var data = _detailsController.rowsData();
+    data.forEach((element) {
+      rows.add(_dataRow(element));
     });
-    return rowsList;
+    return rows;
   }
 
   DataRow _dataRow(RowDetails detail) {

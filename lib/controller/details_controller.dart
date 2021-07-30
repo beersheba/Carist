@@ -16,7 +16,7 @@ class DetailsController extends GetxController {
   var _details;
   var _extra;
 
-  var _detailsList = <RowDetails>[];
+  var _rowsData = <RowDetails>[];
 
   ScreenshotController _screenshotController = ScreenshotController();
   ScreenshotController get screenshotController => _screenshotController;
@@ -51,7 +51,7 @@ class DetailsController extends GetxController {
 
   void _addDetail(RowDetails detail) {
     if (detail.value == null || detail.value == '' || detail.value == 0) return;
-    _detailsList.add(detail);
+    _rowsData.add(detail);
   }
 
   String _vehicleName() {
@@ -93,8 +93,16 @@ class DetailsController extends GetxController {
     return DateTime(dateTime.year, dateTime.month + 1, 0).day;
   }
 
-  List<RowDetails> getDetails() {
-    return _detailsList;
+  List<RowDetails> rowsData() {
+    return _rowsData;
+  }
+
+  String number() {
+    return _base.number.toString();
+  }
+
+  String logoUrl() {
+    return _extra.logoUrl;
   }
 
   Future shareScreenshot() async {
