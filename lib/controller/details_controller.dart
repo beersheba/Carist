@@ -1,9 +1,15 @@
+import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:carist/controller/data_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info/package_info.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
+import 'package:share/share.dart';
 
 class DetailsController extends GetxController {
   var _base;
@@ -11,6 +17,9 @@ class DetailsController extends GetxController {
   var _extra;
 
   var _detailsList = <RowDetails>[];
+
+  ScreenshotController _screenshotController = ScreenshotController();
+  ScreenshotController get screenshotController => _screenshotController;
 
   @override
   void onInit() {
@@ -86,6 +95,24 @@ class DetailsController extends GetxController {
 
   List<RowDetails> getDetails() {
     return _detailsList;
+  }
+
+  Future shareScreenshot() async {
+    await _screenshotController
+        .capture(delay: const Duration(milliseconds: 10))
+        .then((Uint8List image) async {
+      if (image != null) {
+        final directory = await getApplicationDocumentsDirectory();
+        final imagePath = await File('${directory.path}/image.png').create();
+        await imagePath.writeAsBytes(image);
+        PackageInfo packageInfo = await PackageInfo.fromPlatform();
+        String appName = packageInfo.appName;
+        String version = packageInfo.version;
+        await Share.shareFiles([imagePath.path],
+            text:
+                'Shared using $appName v.$version (${Platform.operatingSystem})');
+      }
+    });
   }
 }
 
