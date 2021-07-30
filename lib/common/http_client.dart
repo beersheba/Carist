@@ -13,7 +13,7 @@ class HttpClient {
   }
 
   Future getString() async {
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     print(response.request);
     print(response.body);
     if (response.statusCode == 200) {

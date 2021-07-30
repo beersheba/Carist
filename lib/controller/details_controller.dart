@@ -6,10 +6,10 @@ import 'package:carist/controller/data_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:package_info/package_info.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DetailsController extends GetxController {
   var _base;
@@ -38,7 +38,7 @@ class DetailsController extends GetxController {
     _addDetail(RowDetails('details_engine_size'.tr, _details.engineSize,
         units: 'details_cc'.tr));
     _addDetail(RowDetails('details_fuel'.tr, _base.fuel));
-    _addDetail(RowDetails('details_horse_power'.tr, _details.horsePower));
+    _addDetail(RowDetails('details_horsepower'.tr, _details.horsePower));
     _addDetail(RowDetails('details_ownership'.tr, _base.ownership));
     _addDetail(RowDetails('details_weight'.tr, _details.weight,
         units: 'details_kilo'.tr));
@@ -118,7 +118,7 @@ class DetailsController extends GetxController {
         String version = packageInfo.version;
         await Share.shareFiles([imagePath.path],
             text:
-                'Shared using $appName v.$version (${Platform.operatingSystem})');
+                'Shared using $appName v.$version (${Platform.operatingSystem}) http://carist.me');
       }
     });
   }

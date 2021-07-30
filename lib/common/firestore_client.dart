@@ -27,7 +27,7 @@ class FirestoreClient {
     });
     return brands.get().then((querySnapshot) {
       querySnapshot.docs.forEach((document) {
-        String brand = document.data()['eng'];
+        String brand = document.data();
         String url = map['$brand'];
         batch.update(document.reference, {'logo': '$url'});
       });
