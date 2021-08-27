@@ -11,16 +11,26 @@
 #
 
 # Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+update_fastlane
 
 default_platform(:android)
 
 platform :android do
+
+  lane :test do
+    flutter_version_manager(
+      arguments: "-major",
+      yml: "../version.yml",
+      pubspec: "../pubspec.yaml"
+    )
+  end
+
   desc "Submit a new build to Firebase App Distribution"
   lane :beta do
     build_android_app(task: "assemble")
     firebase_app_distribution(
       app: "1:991042250438:android:76aa2288746adf589019c7",
+      release_notes: "Display table rows w/ data only. Share vehicle details outside the app (via WhatsApp, Telegram etc.)",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-release.apk"
     )
   end

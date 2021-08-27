@@ -16,6 +16,11 @@ or alternatively using `brew install fastlane`
 
 # Available Actions
 ## Android
+### android test
+```
+fastlane android test
+```
+
 ### android beta
 ```
 fastlane android beta
