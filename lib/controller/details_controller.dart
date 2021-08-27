@@ -118,7 +118,7 @@ class DetailsController extends GetxController {
         String version = packageInfo.version;
         await Share.shareFiles([imagePath.path],
             text:
-                'Shared using $appName v.$version (${Platform.operatingSystem}) http://carist.me');
+                'Shared using $appName v$version (${Platform.operatingSystem})');
       }
     });
   }

@@ -1,0 +1,72 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Submit a new build to Firebase App Distribution"
+  lane :beta do
+    bump_patch
+    sh(command: "flutter build apk")
+    firebase_app_distribution(
+      app: "1:991042250438:android:76aa2288746adf589019c7",
+      release_notes: "Display table rows w/ data only. Share vehicle details outside the app (via WhatsApp, Telegram etc.)",
+      android_artifact_path: "./build/app/outputs/flutter-apk/app-release.apk"
+    )
+  end
+end
+
+platform :ios do
+  desc "Submit a new build to Firebase App Distribution"
+  lane :beta do
+    get_certificates
+    get_provisioning_profile
+    bump_patch
+    build_app
+    firebase_app_distribution(
+      app: "1:991042250438:ios:0a662d30b970fd849019c7"
+    )
+  end
+end
+
+lane :test do
+  bump_patch
+  sh(command: "flutter build apk")
+  #build_android_app(task: "assembleRelease", project_dir: 'android/')
+  adb(
+    command: "install /Users/andrey/Documents/My/carist/build/app/outputs/flutter-apk/app-release.apk"
+  )
+end
+
+lane :bump_major do
+  flutter_version_manager(
+    arguments: "-major",
+    yml: "./version.yml",
+    pubspec: "./pubspec.yaml")
+end
+
+lane :bump_minor do
+  flutter_version_manager(
+    arguments: "-minor",
+    yml: "./version.yml",
+    pubspec: "./pubspec.yaml")
+end
+
+lane :bump_patch do
+  flutter_version_manager(
+    arguments: "-patch",
+    yml: "./version.yml",
+    pubspec: "./pubspec.yaml")
+end

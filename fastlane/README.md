@@ -15,15 +15,42 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
-## Android
-### android test
+### test
 ```
-fastlane android test
+fastlane test
 ```
 
+### bump_major
+```
+fastlane bump_major
+```
+
+### bump_minor
+```
+fastlane bump_minor
+```
+
+### bump_patch
+```
+fastlane bump_patch
+```
+
+
+----
+
+## Android
 ### android beta
 ```
 fastlane android beta
+```
+Submit a new build to Firebase App Distribution
+
+----
+
+## iOS
+### ios beta
+```
+fastlane ios beta
 ```
 Submit a new build to Firebase App Distribution
 
