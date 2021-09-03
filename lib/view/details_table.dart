@@ -12,18 +12,15 @@ class DetailsTable extends StatelessWidget {
     return Expanded(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Screenshot(
-          controller: _detailsController.screenshotController,
-          child: DataTable(
-            showCheckboxColumn: false,
-            headingRowHeight: 0,
-            dividerThickness: 2.0,
-            columns: [
-              DataColumn(label: Text("")),
-              DataColumn(label: Text("")),
-            ],
-            rows: getRows(),
-          ),
+        child: DataTable(
+          showCheckboxColumn: false,
+          headingRowHeight: 0,
+          dividerThickness: 2.0,
+          columns: [
+            DataColumn(label: Text("")),
+            DataColumn(label: Text("")),
+          ],
+          rows: getRows(),
         ),
       ),
     );
