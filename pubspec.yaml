@@ -20,6 +20,7 @@ dependencies:
   share_plus: ^2.1.4
   path_provider: ^2.0.2
   package_info_plus: ^1.0.4
+  google_mobile_ads: ^0.13.0
 
 dev_dependencies:
   flutter_test:

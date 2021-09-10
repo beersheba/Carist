@@ -1,3 +1,4 @@
+import 'package:carist/controller/ad_controller.dart';
 import 'package:carist/controller/data_controller.dart';
 import 'package:carist/view/details_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,13 +8,17 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class NumberController extends GetxController {
   DataController _dataController;
+  AdController _adController;
+
   TextEditingController _textController;
+
   TextEditingController get textController => _textController;
 
   @override
   void onInit() {
     _textController = TextEditingController();
     _dataController = Get.put(DataController());
+    _adController = Get.put(AdController());
     super.onInit();
   }
 
@@ -34,8 +39,8 @@ class NumberController extends GetxController {
       try {
         await _dataController.fetchData(carNumber);
         if (_dataController.base.value != null) {
-          Get.back();
-          Get.to(() => DetailsView());
+          _adController.showInterstitialAd();
+          _moveToDetails();
         }
       } catch (e) {
         print(e);
@@ -43,5 +48,10 @@ class NumberController extends GetxController {
         Get.snackbar('error'.tr, 'error_number_not_found'.tr);
       }
     }
+  }
+
+  void _moveToDetails() {
+    Get.back();
+    Get.to(() => DetailsView());
   }
 }
