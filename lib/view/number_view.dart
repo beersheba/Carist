@@ -30,7 +30,7 @@ class NumberView extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: size.width / 16),
                 ),
-                SizedBox(height: size.height / 40),
+                SizedBox(height: size.height / 30),
                 NumberField(
                   controller: _numberController.textController,
                   onConfirm: (_) async => _numberController.submitNumber(),
