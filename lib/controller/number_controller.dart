@@ -32,7 +32,7 @@ class NumberController extends GetxController {
   }
 
   void submitNumber() async {
-    Get.dialog(Center(child: CircularProgressIndicator()),
+    Get.dialog(Center(child: CircularProgressIndicator(color: Colors.white)),
         barrierDismissible: false);
     var carNumber = _textController.text.replaceAll('-', '');
     if (carNumber.length < 7) {

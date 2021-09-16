@@ -28,7 +28,7 @@ class NumberView extends StatelessWidget {
                 Text(
                   'number_title'.tr,
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: size.width / 17),
+                  style: TextStyle(fontSize: size.width / 16),
                 ),
                 SizedBox(height: size.height / 40),
                 NumberField(

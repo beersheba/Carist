@@ -7,7 +7,7 @@ class Strings extends Translations {
           'error': 'Error',
           'error_number_invalid': 'Number is not valid',
           'error_number_not_found': 'Number not found',
-          'number_title': 'Please enter the vehicle number',
+          'number_title': 'Please enter the plate number',
           'number_hint': '7 or 8 digits',
           'number_submit': 'Submit',
           'details_brand': 'Brand',
