@@ -12,6 +12,8 @@ class DetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var imageHeight = size.height / 5;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -38,13 +40,13 @@ class DetailsView extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20.0),
+                padding: EdgeInsets.symmetric(vertical: size.width / 50),
                 child: _detailsController.logoUrl() == null
-                    ? Image.memory(kTransparentImage, height: 150)
+                    ? Image.memory(kTransparentImage, height: imageHeight)
                     : FadeInImage.memoryNetwork(
                         placeholder: kTransparentImage,
                         image: _detailsController.logoUrl(),
-                        height: 150,
+                        height: imageHeight,
                       ),
               ),
               DetailsTable(),
