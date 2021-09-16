@@ -45,5 +45,7 @@
 	<false/>
 	<key>GADApplicationIdentifier</key>
     <string>ca-app-pub-3940256099942544~1458002511</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>This app needs permission to store car details on your device</string>
 </dict>
 </plist>
