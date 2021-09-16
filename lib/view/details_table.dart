@@ -2,7 +2,6 @@ import 'package:carist/controller/details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:screenshot/screenshot.dart';
 
 class DetailsTable extends StatelessWidget {
   final DetailsController _detailsController = Get.find();
@@ -43,13 +42,15 @@ class DetailsTable extends StatelessWidget {
     return DataRow(
       cells: [
         DataCell(Text(detail.title)),
-        DataCell(Text(data, style: TextStyle(color: detail.textColor))),
+        DataCell(
+          Text(data, style: TextStyle(color: detail.textColor)),
+          onLongPress: () {
+            Clipboard.setData(ClipboardData(text: data)).then((value) {
+              Get.snackbar('copied'.tr, data);
+            });
+          },
+        ),
       ],
-      onSelectChanged: (_) {
-        Clipboard.setData(ClipboardData(text: data)).then((value) {
-          Get.snackbar('copied'.tr, data);
-        });
-      },
     );
   }
 }
