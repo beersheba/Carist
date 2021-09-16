@@ -23,37 +23,36 @@ class NumberView extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: size.width / 4),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Image.asset(
-                  'assets/images/mot-logo.png',
-                  color: Colors.white,
+                SizedBox(height: size.height / 7),
+                Text(
+                  'number_title'.tr,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: size.width / 15),
                 ),
-                Column(
-                  children: [
-                    Text(
-                      'number_title'.tr,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 23.0),
-                    ),
-                    SizedBox(height: size.height / 30),
-                    NumberField(
-                      controller: _numberController.textController,
-                      onConfirm: (_) async => _numberController.submitNumber(),
-                    ),
-                  ],
+                SizedBox(height: size.height / 40),
+                NumberField(
+                  controller: _numberController.textController,
+                  onConfirm: (_) async => _numberController.submitNumber(),
                 ),
+                SizedBox(height: size.height / 30),
                 OutlinedButton(
                   style: outlinedButtonStyle,
                   child: Text(
                     'number_submit'.tr,
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: size.width / 15,
                       color: Colors.white,
                     ),
                   ),
                   onPressed: () async => _numberController.submitNumber(),
-                )
+                ),
+                Spacer(),
+                Image.asset(
+                  'assets/images/mot-logo.png',
+                  color: Colors.white,
+                ),
+                SizedBox(height: size.height / 15),
               ],
             ),
           ),
