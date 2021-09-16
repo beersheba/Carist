@@ -44,7 +44,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-3940256099942544~1458002511</string>
+    <string>ca-app-pub-6421731539758811~8961556806</string>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>This app needs permission to store car details on your device</string>
 </dict>

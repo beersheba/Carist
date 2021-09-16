@@ -2,6 +2,7 @@ import 'package:carist/controller/ad_controller.dart';
 import 'package:carist/controller/data_controller.dart';
 import 'package:carist/view/details_view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -18,7 +19,9 @@ class NumberController extends GetxController {
   void onInit() {
     _textController = TextEditingController();
     _dataController = Get.put(DataController());
-    _adController = Get.put(AdController());
+    if (kReleaseMode) {
+      _adController = Get.put(AdController());
+    }
     super.onInit();
   }
 
@@ -39,7 +42,9 @@ class NumberController extends GetxController {
       try {
         await _dataController.fetchData(carNumber);
         if (_dataController.base.value != null) {
-          _adController.showInterstitialAd();
+          if (kReleaseMode) {
+            _adController.showInterstitialAd();
+          }
           _moveToDetails();
         }
       } catch (e) {
