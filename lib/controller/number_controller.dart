@@ -1,3 +1,4 @@
+import 'package:carist/common/locales.dart';
 import 'package:carist/controller/ad_controller.dart';
 import 'package:carist/controller/data_controller.dart';
 import 'package:carist/view/details_view.dart';
@@ -58,5 +59,13 @@ class NumberController extends GetxController {
   void _moveToDetails() {
     Get.back();
     Get.to(() => DetailsView());
+  }
+
+  void setLocale(value) {
+    var locale = localeUs;
+    if (value == Language.hebrew) {
+      locale = localeIl;
+    }
+    Get.updateLocale(locale);
   }
 }

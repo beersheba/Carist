@@ -1,3 +1,4 @@
+import 'package:carist/common/locales.dart';
 import 'package:carist/common/strings.dart';
 import 'package:carist/view/number_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -26,8 +27,7 @@ void main() async {
       defaultTransition: Transition.rightToLeft,
       translations: Strings(),
       locale: Get.deviceLocale,
-      // locale: Locale('he', 'IL'),
-      fallbackLocale: Locale('en', 'US'),
+      fallbackLocale: localeUs,
       home: NumberView(),
       theme: ThemeData(
         accentColor: Colors.grey.shade700,
