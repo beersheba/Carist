@@ -12,6 +12,8 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.3
   firebase_core: ^1.6.0
+  firebase_crashlytics: ^2.2.1
+  firebase_performance: ^0.7.1+1
   cloud_firestore: ^2.5.1
   get: ^4.3.3
   intl: ^0.17.0
