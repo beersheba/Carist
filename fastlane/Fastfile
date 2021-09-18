@@ -18,7 +18,6 @@ default_platform(:android)
 platform :android do
   desc "Submit a new build to Firebase App Distribution"
   lane :beta do
-    bump_patch
     sh(command: "flutter build apk")
     firebase_app_distribution(
       app: "1:991042250438:android:76aa2288746adf589019c7",
@@ -33,7 +32,6 @@ platform :ios do
   lane :beta do
     get_certificates
     get_provisioning_profile
-    bump_patch
     build_app
     firebase_app_distribution(
       app: "1:991042250438:ios:0a662d30b970fd849019c7"
