@@ -3,7 +3,7 @@ import 'dart:ui';
 const localeUs = Locale('en', 'US');
 const localeIl = Locale('he', 'IL');
 
-enum Language { english, hebrew }
+enum Language { hebrew, english }
 
 extension LanguageName on Language {
   String get name {

@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdController extends GetxController {
-  InterstitialAd _interstitialAd;
-  bool _isInterstitialAdReady = false;
+  var _interstitialAd;
+  var _isInterstitialAdReady = false;
+  var _counter = 0;
 
   @override
   void onInit() {
@@ -47,6 +48,17 @@ class AdController extends GetxController {
   void showInterstitialAd() {
     if (_isInterstitialAdReady) {
       _interstitialAd.show();
+    }
+  }
+
+  bool shouldShowAd() {
+    return _counter == 0;
+  }
+
+  void updateCounter() {
+    _counter++;
+    if (_counter == 3) {
+      _counter = 0;
     }
   }
 }
