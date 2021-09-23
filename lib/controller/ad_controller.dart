@@ -9,6 +9,7 @@ class AdController extends GetxController {
 
   @override
   void onInit() {
+    MobileAds.instance.setAppMuted(true);
     _loadInterstitialAd();
     super.onInit();
   }
