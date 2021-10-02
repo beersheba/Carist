@@ -25,9 +25,9 @@ class NumberView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.all(size.height / 50),
                 child: Align(
-                  alignment: Get.locale == localeUs
-                      ? Alignment.topRight
-                      : Alignment.topLeft,
+                  alignment: Get.locale == localeIl
+                      ? Alignment.topLeft
+                      : Alignment.topRight,
                   child: DropdownButton(
                     icon: Icon(
                       Icons.language_outlined,
