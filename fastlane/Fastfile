@@ -18,11 +18,11 @@ default_platform(:android)
 platform :android do
   desc "Submit a new build to Firebase App Distribution"
   lane :beta do
-    sh(command: "flutter build apk")
+    sh(command: "flutter build appbundle")
     firebase_app_distribution(
       app: "1:991042250438:android:76aa2288746adf589019c7",
-      release_notes: "Display table rows w/ data only. Share vehicle details outside the app (via WhatsApp, Telegram etc.)",
-      android_artifact_path: "./build/app/outputs/flutter-apk/app-release.apk"
+      release_notes: "Fixes and updates",
+      android_artifact_path: "./build/app/outputs/bundle/release/app-release.aab"
     )
   end
 end
@@ -37,15 +37,6 @@ platform :ios do
       app: "1:991042250438:ios:0a662d30b970fd849019c7"
     )
   end
-end
-
-lane :test do
-  bump_patch
-  sh(command: "flutter build apk")
-  #build_android_app(task: "assembleRelease", project_dir: 'android/')
-  adb(
-    command: "install /Users/andrey/Documents/My/carist/build/app/outputs/flutter-apk/app-release.apk"
-  )
 end
 
 lane :bump_major do

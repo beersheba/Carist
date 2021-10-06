@@ -15,11 +15,6 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
-### test
-```
-fastlane test
-```
-
 ### bump_major
 ```
 fastlane bump_major
