@@ -20,6 +20,14 @@ Future<Details> fetchDetailsData(
   return Details.fromJson(json);
 }
 
+Future<Importer> fetchImporterData(
+    String modelName, int modelCode, int year) async {
+  String resourceId = '39f455bf-6db0-4926-859d-017f34eacbcb';
+  String url = '$baseUrl?resource_id=$resourceId&q=$modelName+$modelCode+$year';
+  var json = await HttpClient(url).getData();
+  return Importer.fromJson(json);
+}
+
 Future<Extra> fetchBrandData(String brandName) async =>
     await FirestoreClient().brandData(brandName);
 

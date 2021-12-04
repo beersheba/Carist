@@ -5,11 +5,14 @@ import 'package:get/get.dart';
 class DataController extends GetxController {
   var base = Base().obs;
   var details = Details().obs;
+  var importer = Importer().obs;
   var extra = Extra().obs;
 
   Future fetchData(String carNumber) async {
     base.value = await fetchBaseData(carNumber);
     details.value = await fetchDetailsData(
+        base.value.modelName, base.value.modelCode, base.value.year);
+    importer.value = await fetchImporterData(
         base.value.modelName, base.value.modelCode, base.value.year);
     extra.value = await fetchBrandData(details.value.brand);
   }

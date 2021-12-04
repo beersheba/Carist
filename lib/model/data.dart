@@ -74,6 +74,25 @@ class Details {
   }
 }
 
+class Importer {
+  Importer({this.price, this.code, this.name});
+
+  final int price;
+  final int code;
+  final String name;
+
+  factory Importer.fromJson(Map<String, dynamic> json) {
+    List data = json['result']['records'];
+    return data.isNotEmpty
+        ? Importer(
+            price: data[0]['mehir'],
+            code: data[0]['semel_yevuan'],
+            name: data[0]['shem_yevuan'],
+          )
+        : Importer();
+  }
+}
+
 class Extra {
   String brandEng;
   String countryEng;
