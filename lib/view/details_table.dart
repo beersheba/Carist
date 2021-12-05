@@ -8,20 +8,15 @@ class DetailsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: DataTable(
-          showCheckboxColumn: false,
-          headingRowHeight: 0,
-          dividerThickness: 2.0,
-          columns: [
-            DataColumn(label: Text("")),
-            DataColumn(label: Text("")),
-          ],
-          rows: getRows(),
-        ),
-      ),
+    return DataTable(
+      showCheckboxColumn: false,
+      headingRowHeight: 0,
+      dividerThickness: 2.0,
+      columns: [
+        DataColumn(label: Text("")),
+        DataColumn(label: Text("")),
+      ],
+      rows: getRows(),
     );
   }
 

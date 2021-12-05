@@ -35,22 +35,25 @@ class DetailsView extends StatelessWidget {
         centerTitle: true,
       ),
       body: Center(
-        child: Screenshot(
-          controller: _detailsController.screenshotController,
-          child: Column(
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: size.width / 50),
-                child: _detailsController.logoUrl() == null
-                    ? Image.memory(kTransparentImage, height: imageHeight)
-                    : FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: _detailsController.logoUrl(),
-                        height: imageHeight,
-                      ),
-              ),
-              DetailsTable(),
-            ],
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Screenshot(
+            controller: _detailsController.screenshotController,
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: size.width / 50),
+                  child: _detailsController.logoUrl() == null
+                      ? Image.memory(kTransparentImage, height: imageHeight)
+                      : FadeInImage.memoryNetwork(
+                          placeholder: kTransparentImage,
+                          image: _detailsController.logoUrl(),
+                          height: imageHeight,
+                        ),
+                ),
+                DetailsTable(),
+              ],
+            ),
           ),
         ),
       ),
