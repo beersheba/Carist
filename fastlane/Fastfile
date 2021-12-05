@@ -16,8 +16,8 @@ update_fastlane
 default_platform(:android)
 
 platform :android do
-  desc "Submit a new build to Firebase App Distribution"
-  lane :beta do
+  desc "Firebase App Distribution"
+  lane :firebase do
     sh(command: "flutter build appbundle")
     firebase_app_distribution(
       app: "1:991042250438:android:76aa2288746adf589019c7",
@@ -25,11 +25,20 @@ platform :android do
       android_artifact_path: "./build/app/outputs/bundle/release/app-release.aab"
     )
   end
+
+  desc "Google Play Store - Beta track"
+  lane :beta do
+    sh(command: "flutter build appbundle")
+    upload_to_play_store(
+      track: 'beta',
+      aab: "./build/app/outputs/bundle/release/app-release.aab"
+    )
+  end
 end
 
 platform :ios do
-  desc "Submit a new build to Firebase App Distribution"
-  lane :beta do
+  desc "Firebase App Distribution"
+  lane :firebase do
     get_certificates
     get_provisioning_profile
     build_app

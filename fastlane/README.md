@@ -34,20 +34,25 @@ fastlane bump_patch
 ----
 
 ## Android
+### android firebase
+```
+fastlane android firebase
+```
+Firebase App Distribution
 ### android beta
 ```
 fastlane android beta
 ```
-Submit a new build to Firebase App Distribution
+Google Play Store - Beta track
 
 ----
 
 ## iOS
-### ios beta
+### ios firebase
 ```
-fastlane ios beta
+fastlane ios firebase
 ```
-Submit a new build to Firebase App Distribution
+Firebase App Distribution
 
 ----
 
