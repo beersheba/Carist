@@ -52,7 +52,7 @@ class Strings extends Translations {
           'details_ownership': 'סוג בעלות',
           'details_price': 'מחיר יבואן',
           'details_fuel': 'סוג דלק',
-          'details_last_test': 'תאריך מבחן רכב (טסט) אחרון',
+          'details_last_test': 'תאריך מבחן רכב\n(טסט) אחרון',
           'details_license_valid': 'תוקף רישיון רכב',
           'details_horsepower': 'כוח סוס',
           'details_engine_size': 'נפח מנוע',

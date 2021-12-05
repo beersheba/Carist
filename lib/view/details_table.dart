@@ -12,6 +12,7 @@ class DetailsTable extends StatelessWidget {
       showCheckboxColumn: false,
       headingRowHeight: 0,
       dividerThickness: 2.0,
+      columnSpacing: 30,
       columns: [
         DataColumn(label: Text("")),
         DataColumn(label: Text("")),

@@ -13,7 +13,7 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var imageHeight = size.height / 5;
+    var imageHeight = size.height / 7;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -34,11 +34,11 @@ class DetailsView extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Screenshot(
-            controller: _detailsController.screenshotController,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Screenshot(
+          controller: _detailsController.screenshotController,
+          child: Center(
             child: Column(
               children: [
                 Padding(
