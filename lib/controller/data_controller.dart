@@ -3,17 +3,21 @@ import 'package:carist/model/repository.dart';
 import 'package:get/get.dart';
 
 class DataController extends GetxController {
-  var base = Base().obs;
-  var details = Details().obs;
-  var importer = Importer().obs;
-  var extra = Extra().obs;
+  var base = Base();
+  var details = Details();
+  var importer = Importer();
+  var extra = Extra();
 
   Future fetchData(String carNumber) async {
-    base.value = await fetchBaseData(carNumber);
-    details.value = await fetchDetailsData(
-        base.value.modelName, base.value.modelCode, base.value.year);
-    importer.value = await fetchImporterData(
-        base.value.modelName, base.value.modelCode, base.value.year);
-    extra.value = await fetchBrandData(details.value.brand);
+    base = await fetchBaseData(carNumber);
+    if (base != null) {
+      details =
+          await fetchDetailsData(base.modelName, base.modelCode, base.year);
+      importer =
+          await fetchImporterData(base.modelName, base.modelCode, base.year);
+      if (details != null) {
+        extra = await fetchBrandData(details.brand);
+      }
+    }
   }
 }

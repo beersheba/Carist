@@ -39,19 +39,25 @@ class NumberController extends GetxController {
     } else {
       try {
         await _dataController.fetchData(carNumber);
-        if (_dataController.base.value != null) {
+        if (_dataController.base != null) {
           if (_adController.shouldShowAd()) {
             _adController.showInterstitialAd();
           }
           _adController.updateCounter();
           _moveToDetails();
+        } else {
+          _showError();
         }
       } catch (e) {
         print(e);
-        Get.back();
-        Get.snackbar('error'.tr, 'error_number_not_found'.tr);
+        _showError();
       }
     }
+  }
+
+  void _showError() {
+    Get.back();
+    Get.snackbar('error'.tr, 'error_number_not_found'.tr);
   }
 
   void _moveToDetails() {

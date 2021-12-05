@@ -27,10 +27,10 @@ class DetailsController extends GetxController {
   @override
   void onInit() {
     DataController _dataController = Get.find();
-    _base = _dataController.base.value;
-    _details = _dataController.details.value;
-    _importer = _dataController.importer.value;
-    _extra = _dataController.extra.value;
+    _base = _dataController.base;
+    _details = _dataController.details;
+    _importer = _dataController.importer;
+    _extra = _dataController.extra;
     _initDetailsList();
     super.onInit();
   }
@@ -44,11 +44,11 @@ class DetailsController extends GetxController {
         textColor: _dateColor(_base.licenseValidity)));
     _addDetail(RowDetails('details_year'.tr, _base.year));
     _addDetail(RowDetails('details_ownership'.tr, _base.ownership));
-    _addDetail(RowDetails('details_engine_size'.tr, _details.engineSize,
+    _addDetail(RowDetails('details_engine_size'.tr, _details?.engineSize,
         units: 'details_cc'.tr));
-    _addDetail(RowDetails('details_horsepower'.tr, _details.horsePower));
+    _addDetail(RowDetails('details_horsepower'.tr, _details?.horsePower));
     _addDetail(RowDetails('details_fuel'.tr, _base.fuel));
-    _addDetail(RowDetails('details_weight'.tr, _details.weight,
+    _addDetail(RowDetails('details_weight'.tr, _details?.weight,
         units: 'details_kilo'.tr));
     _addDetail(RowDetails('details_vin'.tr, _base.vin));
     _addDetail(RowDetails('details_last_test'.tr, _formatDate(_base.testDate)));
@@ -60,7 +60,7 @@ class DetailsController extends GetxController {
   }
 
   String _vehicleName() {
-    String brand = _extra.brandEng;
+    String brand = _extra?.brandEng;
     if (brand == null) return null;
     String model = _base.model;
     if (model.isCaseInsensitiveContains(brand)) {
@@ -128,10 +128,11 @@ class DetailsController extends GetxController {
   }
 
   String _getCarPrice() {
-    return _importer.price != null
+    int price = _importer?.price;
+    return price != null
         ? NumberFormat.simpleCurrency(locale: 'he_IL', decimalDigits: 0)
-            .format(_importer.price)
-        : null;
+            .format(price)
+        : price;
   }
 }
 
