@@ -4,8 +4,10 @@ import 'package:carist/common/locales.dart';
 import 'package:carist/common/style.dart';
 import 'package:carist/controller/auth_controller.dart';
 import 'package:carist/controller/number_controller.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'number_field.dart';
 
@@ -52,39 +54,66 @@ class NumberView extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: size.width / 4),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(height: size.height / 7),
-                    Text(
-                      'number_title'.tr,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: size.width / 16),
-                    ),
-                    SizedBox(height: size.height / 30),
-                    NumberField(
-                      controller: _numberController.textController,
-                      onConfirm: (_) async => _numberController.submitNumber(),
-                    ),
-                    SizedBox(height: size.height / 30),
-                    OutlinedButton(
-                      style: outlinedButtonStyle,
-                      child: Text(
-                        'number_submit'.tr,
-                        style: TextStyle(
-                          fontSize: 23.0,
-                          color: Colors.white,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(height: size.height / 7),
+                      Text(
+                        'number_title'.tr,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: size.width / 16),
+                      ),
+                      SizedBox(height: size.height / 30),
+                      NumberField(
+                        controller: _numberController.textController,
+                        onConfirm: (_) async =>
+                            _numberController.submitNumber(),
+                      ),
+                      SizedBox(height: size.height / 30),
+                      OutlinedButton(
+                        style: outlinedButtonStyle,
+                        child: Text(
+                          'number_submit'.tr,
+                          style: TextStyle(
+                            fontSize: 23.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () async => _numberController.submitNumber(),
+                      ),
+                      Spacer(),
+                      Image.asset(
+                        'assets/images/gov_cloud.png',
+                        height: size.height / 15,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: size.height / 60,
+                          bottom: size.height / 20,
+                        ),
+                        child: RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(text: 'Powered by '),
+                              TextSpan(
+                                text: 'data.gov.il',
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    decoration: TextDecoration.underline),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () async {
+                                    const url = 'https://data.gov.il/';
+                                    if (await canLaunch(url)) {
+                                      await launch(url, forceSafariVC: false);
+                                    }
+                                  },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      onPressed: () async => _numberController.submitNumber(),
-                    ),
-                    Spacer(),
-                    Image.asset(
-                      'assets/images/mot-logo.png',
-                      color: Colors.white,
-                    ),
-                    SizedBox(height: size.height / 10),
-                  ],
-                ),
+                    ]),
               )
             ],
           ),
