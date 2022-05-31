@@ -1,6 +1,6 @@
 name: carist
 description: Carist
-version: 1.2.1+41202541
+version: 1.2.2+53735626
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -9,22 +9,22 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.4
-  google_fonts: ^2.2.0
+  google_fonts: ^3.0.1
   http: ^0.13.4
-  firebase_core: ^1.10.6
-  firebase_auth: ^3.3.4
-  firebase_crashlytics: ^2.4.4
-  firebase_performance: ^0.8.0+3
-  cloud_firestore: ^3.1.5
-  get: ^4.6.1
+  firebase_core: ^1.17.1
+  firebase_auth: ^3.3.19
+  firebase_crashlytics: ^2.8.1
+  firebase_performance: ^0.8.0+13
+  cloud_firestore: ^3.1.17
+  get: ^4.6.5
   intl: ^0.17.0
   transparent_image: ^2.0.0
   screenshot: ^1.2.3
-  share_plus: ^3.0.4
+  share_plus: ^4.0.4
   path_provider: ^2.0.10
-  package_info_plus: ^1.3.0
-  google_mobile_ads: ^1.0.1
-  url_launcher: ^6.0.17
+  package_info_plus: ^1.4.2
+  google_mobile_ads: ^1.2.0
+  url_launcher: ^6.1.2
 
 dev_dependencies:
   flutter_test:
