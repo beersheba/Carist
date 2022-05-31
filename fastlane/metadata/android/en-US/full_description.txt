@@ -4,6 +4,4 @@ Check the car details in seconds just by entering the license plate number!
 • The details can be saved & shared (for example, to your favorite messenger)
 • Available in English and Hebrew.
 
-All details are provided by Israel Government Database (https://data.gov.il/)
-
 Try now for free!
