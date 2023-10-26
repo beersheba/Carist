@@ -18,9 +18,9 @@ class Base {
   final int number;
   final String model;
   final String modelName;
-  final String modelCode;
+  final int modelCode;
   final String version;
-  final String year;
+  final int year;
   final String vin;
   final String engineCode;
   final String type;
@@ -62,9 +62,9 @@ class Details {
 
   final String brand;
   final String country;
-  final String engineSize;
-  final String weight;
-  final String horsePower;
+  final int engineSize;
+  final int weight;
+  final int horsePower;
 
   factory Details.fromJson(Map<String, dynamic> json) {
     List data = json['result']['records'];

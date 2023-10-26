@@ -13,7 +13,7 @@ Future<Base> fetchBaseData(String carNumber) async {
 }
 
 Future<Details> fetchDetailsData(
-    String modelName, String modelCode, String year) async {
+    String modelName, int modelCode, int year) async {
   String resourceId = '142afde2-6228-49f9-8a29-9b6c3a0cbe40';
   String url = '$baseUrl?resource_id=$resourceId&q=$modelName+$modelCode+$year';
   var json = await HttpClient(url).getData();
@@ -21,7 +21,7 @@ Future<Details> fetchDetailsData(
 }
 
 Future<Importer> fetchImporterData(
-    String modelName, String modelCode, String year) async {
+    String modelName, int modelCode, int year) async {
   String resourceId = '39f455bf-6db0-4926-859d-017f34eacbcb';
   String url = '$baseUrl?resource_id=$resourceId&q=$modelName+$modelCode+$year';
   var json = await HttpClient(url).getData();
