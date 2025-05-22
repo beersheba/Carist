@@ -42,7 +42,7 @@ class DetailsView extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(vertical: size.width / 50),
-                  child: _detailsController.logoUrl() == null
+                  child: _detailsController.logoUrl().isEmpty
                       ? Image.memory(kTransparentImage, height: imageHeight)
                       : FadeInImage.memoryNetwork(
                           placeholder: kTransparentImage,

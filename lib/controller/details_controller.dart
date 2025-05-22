@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -12,10 +13,10 @@ import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
 
 class DetailsController extends GetxController {
-  Base _base;
-  Details _details;
-  Importer _importer;
-  Extra _extra;
+  late Base _base;
+  late Details _details;
+  late Importer _importer;
+  late Extra _extra;
 
   var _rowsData = <RowDetails>[];
 
@@ -25,11 +26,17 @@ class DetailsController extends GetxController {
 
   @override
   void onInit() {
-    DataController _dataController = Get.find();
-    _base = _dataController.base;
-    _details = _dataController.details;
-    _importer = _dataController.importer;
-    _extra = _dataController.extra;
+    final DataController _dataController = Get.find();
+    if (_dataController.base == null ||
+        _dataController.details == null ||
+        _dataController.importer == null ||
+        _dataController.extra == null) {
+      throw Exception('DataController fields must not be null');
+    }
+    _base = _dataController.base!;
+    _details = _dataController.details!;
+    _importer = _dataController.importer!;
+    _extra = _dataController.extra!;
     _initDetailsList();
     super.onInit();
   }
@@ -65,14 +72,6 @@ class DetailsController extends GetxController {
       return model;
     }
     return ('${brand.toUpperCase()} $model');
-  }
-
-  String _vehicleType(String type) {
-    String vehicleType = 'details_type_private'.tr;
-    if (type == 'M') {
-      vehicleType = 'details_type_commercial'.tr;
-    }
-    return vehicleType;
   }
 
   String _formatDate(String date) {
@@ -111,24 +110,25 @@ class DetailsController extends GetxController {
   Future shareScreenshot() async {
     await _screenshotController
         .capture(delay: const Duration(milliseconds: 10))
-        .then((Uint8List image) async {
+        .then((Uint8List? image) async {
+      if (image == null) return;
       final directory = await getApplicationDocumentsDirectory();
       final imagePath = await File('${directory.path}/image.png').create();
       await imagePath.writeAsBytes(image);
       PackageInfo packageInfo = await PackageInfo.fromPlatform();
       String appName = packageInfo.appName;
       String version = packageInfo.version;
-      await Share.shareFiles([imagePath.path],
+      await Share.shareXFiles([XFile(imagePath.path)],
           text: 'Made by $appName v$version (${Platform.operatingSystem})');
-        });
+    });
   }
 
   String _getCarPrice() {
     int price = _importer.price;
-    return price != null
+    return price != 0
         ? NumberFormat.simpleCurrency(locale: 'he_IL', decimalDigits: 0)
-            .format(price)
-        : price;
+        .format(price)
+        : '';
   }
 }
 

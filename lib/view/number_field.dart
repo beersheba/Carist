@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class NumberField extends StatelessWidget {
+class NumberField extends StatefulWidget {
   NumberField({required this.controller, required this.onConfirm});
 
   final TextEditingController controller;
-  final Function onConfirm;
+  final VoidCallback? onConfirm;
 
+  @override
+  State<NumberField> createState() => _NumberFieldState();
+}
+
+class _NumberFieldState extends State<NumberField> {
   var border = OutlineInputBorder(
     borderSide: BorderSide(color: Colors.yellow),
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -31,8 +36,8 @@ class NumberField extends StatelessWidget {
         hintText: 'number_hint'.tr,
       ),
       keyboardType: TextInputType.number,
-      controller: controller,
-      onSubmitted: onConfirm(),
+      controller: widget.controller,
+      onSubmitted: (_) => widget.onConfirm?.call(),
       onEditingComplete: () {},
     );
   }

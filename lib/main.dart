@@ -37,7 +37,11 @@ void main() async {
         brightness: Brightness.dark,
         textTheme: GoogleFonts.latoTextTheme(
           ThemeData(brightness: Brightness.dark).textTheme,
-        ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey.shade700),
+        ),
+        colorScheme: ColorScheme.fromSwatch(
+          brightness: Brightness.dark,
+          accentColor: Colors.grey.shade700,
+        ),
       ),
     ),
   );

@@ -1,18 +1,18 @@
 class Base {
   Base({
-    this.number,
-    this.model,
-    this.modelName,
-    this.modelCode,
-    this.version,
-    this.year,
-    this.vin,
-    this.engineCode,
-    this.type,
-    this.ownership,
-    this.fuel,
-    this.testDate,
-    this.licenseValidity,
+    required this.number,
+    required this.model,
+    required this.modelName,
+    required this.modelCode,
+    required this.version,
+    required this.year,
+    required this.vin,
+    required this.engineCode,
+    required this.type,
+    required this.ownership,
+    required this.fuel,
+    required this.testDate,
+    required this.licenseValidity,
   });
 
   final int number;
@@ -31,33 +31,35 @@ class Base {
 
   factory Base.fromJson(Map<String, dynamic> json) {
     List data = json['result']['records'];
-    return data.isNotEmpty
-        ? Base(
-            number: data[0]['mispar_rechev'],
-            model: data[0]['kinuy_mishari'],
-            modelName: data[0]['degem_nm'],
-            modelCode: data[0]['degem_cd'],
-            version: data[0]['ramat_gimur'],
-            year: data[0]['shnat_yitzur'],
-            vin: data[0]['misgeret'],
-            engineCode: data[0]['degem_manoa'],
-            type: data[0]['sug_degem'],
-            ownership: data[0]['baalut'],
-            fuel: data[0]['sug_delek_nm'],
-            testDate: data[0]['mivchan_acharon_dt'],
-            licenseValidity: data[0]['tokef_dt'],
-          )
-        : null;
+    if (data.isNotEmpty) {
+      return Base(
+        number: data[0]['mispar_rechev'],
+        model: data[0]['kinuy_mishari'],
+        modelName: data[0]['degem_nm'],
+        modelCode: data[0]['degem_cd'],
+        version: data[0]['ramat_gimur'],
+        year: data[0]['shnat_yitzur'],
+        vin: data[0]['misgeret'],
+        engineCode: data[0]['degem_manoa'],
+        type: data[0]['sug_degem'],
+        ownership: data[0]['baalut'],
+        fuel: data[0]['sug_delek_nm'],
+        testDate: data[0]['mivchan_acharon_dt'],
+        licenseValidity: data[0]['tokef_dt'],
+      );
+    } else {
+      throw Exception('No data found');
+    }
   }
 }
 
 class Details {
   Details({
-    this.brand,
-    this.country,
-    this.engineSize,
-    this.weight,
-    this.horsePower,
+    required this.brand,
+    required this.country,
+    required this.engineSize,
+    required this.weight,
+    required this.horsePower,
   });
 
   final String brand;
@@ -68,20 +70,26 @@ class Details {
 
   factory Details.fromJson(Map<String, dynamic> json) {
     List data = json['result']['records'];
-    return data.isNotEmpty
-        ? Details(
-            brand: data[0]['tozar'],
-            country: data[0]['tozeret_eretz_nm'],
-            engineSize: data[0]['nefah_manoa'],
-            weight: data[0]['mishkal_kolel'],
-            horsePower: data[0]['koah_sus'],
-          )
-        : null;
+    if (data.isNotEmpty) {
+      return Details(
+        brand: data[0]['tozar'],
+        country: data[0]['tozeret_eretz_nm'],
+        engineSize: data[0]['nefah_manoa'],
+        weight: data[0]['mishkal_kolel'],
+        horsePower: data[0]['koah_sus'],
+      );
+    } else {
+      throw Exception('No data found');
+    }
   }
 }
 
 class Importer {
-  Importer({this.price, this.code, this.name});
+  Importer({
+    required this.price,
+    required this.code,
+    required this.name,
+  });
 
   final int price;
   final int code;
@@ -89,18 +97,26 @@ class Importer {
 
   factory Importer.fromJson(Map<String, dynamic> json) {
     List data = json['result']['records'];
-    return data.isNotEmpty
-        ? Importer(
-            price: data[0]['mehir'],
-            code: data[0]['semel_yevuan'],
-            name: data[0]['shem_yevuan'],
-          )
-        : null;
+    if (data.isNotEmpty) {
+      return Importer(
+        price: data[0]['mehir'],
+        code: data[0]['semel_yevuan'],
+        name: data[0]['shem_yevuan'],
+      );
+    } else {
+      throw Exception('No data found');
+    }
   }
 }
 
 class Extra {
-  String brandEng;
-  String countryEng;
-  String logoUrl;
+  Extra({
+    required this.brandEng,
+    required this.countryEng,
+    required this.logoUrl,
+  });
+
+  final String brandEng;
+  final String countryEng;
+  final String logoUrl;
 }

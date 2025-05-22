@@ -9,15 +9,16 @@ class FirestoreClient {
   WriteBatch batch = FirebaseFirestore.instance.batch();
 
   Future<Extra> brandData(String hebBrandName) async {
-    Extra extra = Extra();
-    await brands.where('heb', isEqualTo: hebBrandName).get().then((value) {
-      if (value.docs.isNotEmpty) {
-        Map<String, dynamic> documentData = value.docs.single.data();
-        extra.brandEng = documentData['eng'];
-        extra.logoUrl = documentData['logo'];
-      }
-    });
-    return extra;
+    final query = await brands.where('heb', isEqualTo: hebBrandName).limit(1).get();
+    if (query.docs.isEmpty) {
+      return Extra(brandEng: '', countryEng: '', logoUrl: '');
+    }
+    final data = query.docs.first.data() as Map<String, dynamic>;
+    return Extra(
+      brandEng: data['eng'] ?? '',
+      countryEng: '',
+      logoUrl: data['logo'] ?? '',
+    );
   }
 
   Future<void> updateLogos(Map<String, Logos> logos) {
@@ -27,8 +28,8 @@ class FirestoreClient {
     });
     return brands.get().then((querySnapshot) {
       querySnapshot.docs.forEach((document) {
-        String brand = document.data();
-        String url = map['$brand'];
+        String brand = (document.data() as Map<String, dynamic>)['eng'] as String;
+        String? url = map[brand];
         batch.update(document.reference, {'logo': '$url'});
       });
 

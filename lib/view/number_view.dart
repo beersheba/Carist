@@ -1,7 +1,6 @@
 
 import 'package:carist/common/locales.dart';
 import 'package:carist/common/style.dart';
-import 'package:carist/controller/auth_controller.dart';
 import 'package:carist/controller/number_controller.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +11,6 @@ import 'number_field.dart';
 
 class NumberView extends StatelessWidget {
   final NumberController _numberController = Get.put(NumberController());
-  final AuthController _authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,8 +62,7 @@ class NumberView extends StatelessWidget {
                       SizedBox(height: size.height / 30),
                       NumberField(
                         controller: _numberController.textController,
-                        onConfirm: (_) async =>
-                            _numberController.submitNumber(),
+                        onConfirm: () async => _numberController.submitNumber(),
                       ),
                       SizedBox(height: size.height / 30),
                       OutlinedButton(
@@ -103,8 +100,9 @@ class NumberView extends StatelessWidget {
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () async {
                                     const url = 'https://data.gov.il/';
-                                    if (await canLaunch(url)) {
-                                      await launch(url, forceSafariVC: false);
+                                    final uri = Uri.parse(url);
+                                    if (await canLaunchUrl(uri)) {
+                                      await launchUrl(uri, mode: LaunchMode.externalApplication);
                                     }
                                   },
                               ),

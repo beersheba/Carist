@@ -4,7 +4,7 @@ Map<String, Logos> logosFromJson(String str) => Map.from(json.decode(str))
     .map((k, v) => MapEntry<String, Logos>(k, Logos.fromJson(v)));
 
 class Logos {
-  Logos({this.name, this.logotype});
+  Logos({required this.name, required this.logotype});
 
   final String name;
   final Logotype logotype;
@@ -16,7 +16,7 @@ class Logos {
 }
 
 class Logotype {
-  Logotype({this.uri});
+  Logotype({required this.uri});
 
   final String uri;
 

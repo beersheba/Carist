@@ -12,8 +12,6 @@ extension LanguageName on Language {
         return 'English';
       case Language.hebrew:
         return 'עברית';
-      default:
-        return '';
-    }
+      }
   }
 }
