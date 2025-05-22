@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'dart:ui';
 
 import 'package:carist/controller/data_controller.dart';
 import 'package:carist/model/data.dart';
@@ -44,11 +43,11 @@ class DetailsController extends GetxController {
         textColor: _dateColor(_base.licenseValidity)));
     _addDetail(RowDetails('details_year'.tr, _base.year));
     _addDetail(RowDetails('details_ownership'.tr, _base.ownership));
-    _addDetail(RowDetails('details_engine_size'.tr, _details?.engineSize,
+    _addDetail(RowDetails('details_engine_size'.tr, _details.engineSize,
         units: 'details_cc'.tr));
-    _addDetail(RowDetails('details_horsepower'.tr, _details?.horsePower));
+    _addDetail(RowDetails('details_horsepower'.tr, _details.horsePower));
     _addDetail(RowDetails('details_fuel'.tr, _base.fuel));
-    _addDetail(RowDetails('details_weight'.tr, _details?.weight,
+    _addDetail(RowDetails('details_weight'.tr, _details.weight,
         units: 'details_kilo'.tr));
     _addDetail(RowDetails('details_vin'.tr, _base.vin));
     _addDetail(RowDetails('details_last_test'.tr, _formatDate(_base.testDate)));
@@ -60,8 +59,7 @@ class DetailsController extends GetxController {
   }
 
   String _vehicleName() {
-    String brand = _extra?.brandEng;
-    if (brand == null) return null;
+    String brand = _extra.brandEng;
     String model = _base.model;
     if (model.isCaseInsensitiveContains(brand)) {
       return model;
@@ -114,21 +112,19 @@ class DetailsController extends GetxController {
     await _screenshotController
         .capture(delay: const Duration(milliseconds: 10))
         .then((Uint8List image) async {
-      if (image != null) {
-        final directory = await getApplicationDocumentsDirectory();
-        final imagePath = await File('${directory.path}/image.png').create();
-        await imagePath.writeAsBytes(image);
-        PackageInfo packageInfo = await PackageInfo.fromPlatform();
-        String appName = packageInfo.appName;
-        String version = packageInfo.version;
-        await Share.shareFiles([imagePath.path],
-            text: 'Made by $appName v$version (${Platform.operatingSystem})');
-      }
-    });
+      final directory = await getApplicationDocumentsDirectory();
+      final imagePath = await File('${directory.path}/image.png').create();
+      await imagePath.writeAsBytes(image);
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      String appName = packageInfo.appName;
+      String version = packageInfo.version;
+      await Share.shareFiles([imagePath.path],
+          text: 'Made by $appName v$version (${Platform.operatingSystem})');
+        });
   }
 
   String _getCarPrice() {
-    int price = _importer?.price;
+    int price = _importer.price;
     return price != null
         ? NumberFormat.simpleCurrency(locale: 'he_IL', decimalDigits: 0)
             .format(price)

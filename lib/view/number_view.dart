@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:carist/common/locales.dart';
 import 'package:carist/common/style.dart';

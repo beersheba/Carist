@@ -1,7 +1,6 @@
 import 'package:carist/common/number_formatter.dart';
 import 'package:carist/controller/details_controller.dart';
 import 'package:carist/view/details_table.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';

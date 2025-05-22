@@ -10,14 +10,10 @@ class DataController extends GetxController {
 
   Future fetchData(String carNumber) async {
     base = await fetchBaseData(carNumber);
-    if (base != null) {
-      details =
-          await fetchDetailsData(base.modelName, base.modelCode, base.year);
-      importer =
-          await fetchImporterData(base.modelName, base.modelCode, base.year);
-      if (details != null) {
-        extra = await fetchBrandData(details.brand);
+    details =
+        await fetchDetailsData(base.modelName, base.modelCode, base.year);
+    importer =
+        await fetchImporterData(base.modelName, base.modelCode, base.year);
+    extra = await fetchBrandData(details.brand);
       }
-    }
-  }
 }

@@ -30,7 +30,6 @@ void main() async {
       fallbackLocale: localeUs,
       home: NumberView(),
       theme: ThemeData(
-        accentColor: Colors.grey.shade700,
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: Colors.grey.shade700,
           selectionHandleColor: Colors.white,
@@ -38,7 +37,7 @@ void main() async {
         brightness: Brightness.dark,
         textTheme: GoogleFonts.latoTextTheme(
           ThemeData(brightness: Brightness.dark).textTheme,
-        ),
+        ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.grey.shade700),
       ),
     ),
   );
