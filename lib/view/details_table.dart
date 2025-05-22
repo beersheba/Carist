@@ -32,7 +32,7 @@ class DetailsTable extends StatelessWidget {
 
   DataRow _dataRow(RowDetails detail) {
     var data = detail.value.toString();
-    if (!detail.units.isBlank) {
+    if (!(detail.units.isBlank ?? true)) {
       data = "$data ${detail.units}";
     }
     return DataRow(
