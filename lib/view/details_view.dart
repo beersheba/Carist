@@ -1,7 +1,6 @@
 import 'package:carist/common/number_formatter.dart';
 import 'package:carist/controller/details_controller.dart';
 import 'package:carist/view/details_table.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:screenshot/screenshot.dart';
@@ -38,21 +37,24 @@ class DetailsView extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Screenshot(
           controller: _detailsController.screenshotController,
-          child: Center(
-            child: Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: size.width / 50),
-                  child: _detailsController.logoUrl() == null
-                      ? Image.memory(kTransparentImage, height: imageHeight)
-                      : FadeInImage.memoryNetwork(
-                          placeholder: kTransparentImage,
-                          image: _detailsController.logoUrl(),
-                          height: imageHeight,
-                        ),
-                ),
-                DetailsTable(),
-              ],
+          child: Container(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            child: Center(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: size.width / 50),
+                    child: _detailsController.logoUrl().isEmpty
+                        ? Image.memory(kTransparentImage, height: imageHeight)
+                        : FadeInImage.memoryNetwork(
+                            placeholder: kTransparentImage,
+                            image: _detailsController.logoUrl(),
+                            height: imageHeight,
+                          ),
+                  ),
+                  DetailsTable(),
+                ],
+              ),
             ),
           ),
         ),

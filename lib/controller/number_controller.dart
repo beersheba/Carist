@@ -2,16 +2,14 @@ import 'package:carist/common/locales.dart';
 import 'package:carist/controller/ad_controller.dart';
 import 'package:carist/controller/data_controller.dart';
 import 'package:carist/view/details_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 
 class NumberController extends GetxController {
-  DataController _dataController;
-  AdController _adController;
+  late DataController _dataController;
+  late AdController _adController;
 
-  TextEditingController _textController;
+  late TextEditingController _textController;
 
   TextEditingController get textController => _textController;
 
@@ -25,7 +23,7 @@ class NumberController extends GetxController {
 
   @override
   void onClose() {
-    _textController?.dispose();
+    _textController.dispose();
     super.onClose();
   }
 
@@ -39,16 +37,12 @@ class NumberController extends GetxController {
     } else {
       try {
         await _dataController.fetchData(carNumber);
-        if (_dataController.base != null) {
-          if (_adController.shouldShowAd()) {
-            _adController.showInterstitialAd();
-          }
-          _adController.updateCounter();
-          _moveToDetails();
-        } else {
-          _showError();
+        if (_adController.shouldShowAd()) {
+          _adController.showInterstitialAd();
         }
-      } catch (e) {
+        _adController.updateCounter();
+        _moveToDetails();
+            } catch (e) {
         print(e);
         _showError();
       }

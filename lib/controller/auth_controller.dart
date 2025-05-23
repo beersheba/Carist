@@ -6,7 +6,7 @@ class AuthController extends GetxController {
 
   Future<User> signInAnon() async {
     UserCredential result = await firebaseAuth.signInAnonymously();
-    User user = result.user;
+    User user = result.user!;
     return user;
   }
 

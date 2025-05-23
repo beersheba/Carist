@@ -20,7 +20,7 @@ void main() async {
   if (kDebugMode) {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
-  MobileAds.instance.initialize();
+  await MobileAds.instance.initialize();
   runApp(
     GetMaterialApp(
       title: 'Carist',
@@ -30,7 +30,6 @@ void main() async {
       fallbackLocale: localeUs,
       home: NumberView(),
       theme: ThemeData(
-        accentColor: Colors.grey.shade700,
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: Colors.grey.shade700,
           selectionHandleColor: Colors.white,
@@ -38,6 +37,10 @@ void main() async {
         brightness: Brightness.dark,
         textTheme: GoogleFonts.latoTextTheme(
           ThemeData(brightness: Brightness.dark).textTheme,
+        ),
+        colorScheme: ColorScheme.fromSwatch(
+          brightness: Brightness.dark,
+          accentColor: Colors.grey.shade700,
         ),
       ),
     ),
