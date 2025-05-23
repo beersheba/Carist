@@ -20,7 +20,7 @@ void main() async {
   if (kDebugMode) {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
-  MobileAds.instance.initialize();
+  await MobileAds.instance.initialize();
   runApp(
     GetMaterialApp(
       title: 'Carist',
